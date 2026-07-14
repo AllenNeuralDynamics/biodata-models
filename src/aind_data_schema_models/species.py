@@ -132,6 +132,15 @@ class _Lama_Glama(SpeciesModel):
     registry_identifier: Literal["NCBI:txid9844"] = "NCBI:txid9844"
 
 
+class _Macaca_Fascicularis(SpeciesModel):
+    """Model Macaca fascicularis"""
+
+    name: Literal["Macaca fascicularis"] = "Macaca fascicularis"
+    common_name: Literal["Crab-eating macaque"] = "Crab-eating macaque"
+    registry: Registry = Registry.NCBI
+    registry_identifier: Literal["NCBI:txid9541"] = "NCBI:txid9541"
+
+
 class _Macaca_Mulatta(SpeciesModel):
     """Model Macaca mulatta"""
 
@@ -139,6 +148,15 @@ class _Macaca_Mulatta(SpeciesModel):
     common_name: Literal["Rhesus macaque"] = "Rhesus macaque"
     registry: Registry = Registry.NCBI
     registry_identifier: Literal["NCBI:txid9544"] = "NCBI:txid9544"
+
+
+class _Macaca_Nemestrina(SpeciesModel):
+    """Model Macaca nemestrina"""
+
+    name: Literal["Macaca nemestrina"] = "Macaca nemestrina"
+    common_name: Literal["Pig-tailed macaque"] = "Pig-tailed macaque"
+    registry: Registry = Registry.NCBI
+    registry_identifier: Literal["NCBI:txid9545"] = "NCBI:txid9545"
 
 
 class _Mus_Musculus(SpeciesModel):
@@ -168,6 +186,15 @@ class _Rattus_Norvegicus(SpeciesModel):
     registry_identifier: Literal["NCBI:txid10116"] = "NCBI:txid10116"
 
 
+class _Saimiri_Sciureus(SpeciesModel):
+    """Model Saimiri sciureus"""
+
+    name: Literal["Saimiri sciureus"] = "Saimiri sciureus"
+    common_name: Literal["Common squirrel monkey"] = "Common squirrel monkey"
+    registry: Registry = Registry.NCBI
+    registry_identifier: Literal["NCBI:txid9521"] = "NCBI:txid9521"
+
+
 class _Vicuna_Pacos(SpeciesModel):
     """Model Vicuna pacos"""
 
@@ -187,10 +214,13 @@ class Species:
     CHICKEN = _Gallus_Gallus()
     HUMAN = _Homo_Sapiens()
     LLAMA = _Lama_Glama()
+    CRABEATING_MACAQUE = _Macaca_Fascicularis()
     RHESUS_MACAQUE = _Macaca_Mulatta()
+    PIGTAILED_MACAQUE = _Macaca_Nemestrina()
     HOUSE_MOUSE = _Mus_Musculus()
     EUROPEAN_RABBIT = _Oryctolagus_Cuniculus()
     NORWAY_RAT = _Rattus_Norvegicus()
+    COMMON_SQUIRREL_MONKEY = _Saimiri_Sciureus()
     ALPACA = _Vicuna_Pacos()
 
     ALL = tuple(SpeciesModel.__subclasses__())
@@ -204,10 +234,13 @@ class Species:
             _Gallus_Gallus,
             _Homo_Sapiens,
             _Lama_Glama,
+            _Macaca_Fascicularis,
             _Macaca_Mulatta,
+            _Macaca_Nemestrina,
             _Mus_Musculus,
             _Oryctolagus_Cuniculus,
             _Rattus_Norvegicus,
+            _Saimiri_Sciureus,
             _Vicuna_Pacos,
         ],
         Field(discriminator="name"),
