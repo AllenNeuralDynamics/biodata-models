@@ -18,13 +18,13 @@ class StrainModel(BaseModel):
     registry_identifier: Optional[str] = Field(default=None)
 
 
-class _C57Bl_6J(StrainModel):
-    """Model C57BL/6J"""
+class _Unknown(StrainModel):
+    """Model Unknown"""
 
-    name: Literal["C57BL/6J"] = "C57BL/6J"
+    name: Literal["Unknown"] = "Unknown"
     species: Literal["Mus musculus"] = "Mus musculus"
-    registry: Optional[Registry] = Field(default=Registry.MGI)
-    registry_identifier: Optional[str] = Field(default="MGI:3028467")
+    registry: Optional[Registry] = Field(default=None)
+    registry_identifier: Optional[str] = Field(default=None)
 
 
 class _Balb_C(StrainModel):
@@ -36,27 +36,27 @@ class _Balb_C(StrainModel):
     registry_identifier: Optional[str] = Field(default="MGI:2159737")
 
 
-class _Unknown(StrainModel):
-    """Model Unknown"""
+class _C57Bl_6J(StrainModel):
+    """Model C57BL/6J"""
 
-    name: Literal["Unknown"] = "Unknown"
+    name: Literal["C57BL/6J"] = "C57BL/6J"
     species: Literal["Mus musculus"] = "Mus musculus"
-    registry: Optional[Registry] = Field(default=None)
-    registry_identifier: Optional[str] = Field(default=None)
+    registry: Optional[Registry] = Field(default=Registry.MGI)
+    registry_identifier: Optional[str] = Field(default="MGI:3028467")
 
 
 class Strain:
     """Strain"""
 
-    C57BL_6J = _C57Bl_6J()
+    UNKNOWN = _Unknown()
 
     BALB_C = _Balb_C()
 
-    UNKNOWN = _Unknown()
+    C57BL_6J = _C57Bl_6J()
 
     ALL = tuple(StrainModel.__subclasses__())
 
-    ONE_OF = Annotated[Union[_C57Bl_6J, _Balb_C, _Unknown], Field(discriminator="name")]
+    ONE_OF = Annotated[Union[_Unknown, _Balb_C, _C57Bl_6J], Field(discriminator="name")]
 
 
 class SpeciesModel(BaseModel):
@@ -214,9 +214,9 @@ class Species:
     CHICKEN = _Gallus_Gallus()
     HUMAN = _Homo_Sapiens()
     LLAMA = _Lama_Glama()
-    CRABEATING_MACAQUE = _Macaca_Fascicularis()
+    CRAB_EATING_MACAQUE = _Macaca_Fascicularis()
     RHESUS_MACAQUE = _Macaca_Mulatta()
-    PIGTAILED_MACAQUE = _Macaca_Nemestrina()
+    PIG_TAILED_MACAQUE = _Macaca_Nemestrina()
     HOUSE_MOUSE = _Mus_Musculus()
     EUROPEAN_RABBIT = _Oryctolagus_Cuniculus()
     NORWAY_RAT = _Rattus_Norvegicus()
