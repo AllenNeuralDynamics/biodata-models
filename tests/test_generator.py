@@ -4,12 +4,12 @@ import unittest
 from unittest.mock import patch, mock_open, MagicMock
 from pathlib import Path
 import pandas as pd
-from aind_data_schema_models._generators.generator import generate_code, check_black_version, load_data
+from biodata_models._generators.generator import generate_code, check_black_version, load_data
 import os
 
 
 TEST_DIR = Path(os.path.dirname(os.path.realpath(__file__)))
-ROOT_DIR = TEST_DIR / ".." / "src/aind_data_schema_models"
+ROOT_DIR = TEST_DIR / ".." / "src/biodata_models"
 
 
 class TestGenerateCode(unittest.TestCase):
@@ -144,7 +144,7 @@ class TestGenerateCode(unittest.TestCase):
 
     def test_regex_search(self):
         """Minimal test for regex_search function"""
-        from aind_data_schema_models._generators.generator import regex_search
+        from biodata_models._generators.generator import regex_search
 
         # Should match and return groups
         result = regex_search("abc123", r"([a-z]+)(\d+)")

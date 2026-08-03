@@ -2,7 +2,7 @@
 
 import unittest
 
-from aind_data_schema_models.organizations import Organization
+from biodata_models.organizations import Organization
 
 
 class TestOrganization(unittest.TestCase):

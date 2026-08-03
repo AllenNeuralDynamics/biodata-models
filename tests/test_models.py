@@ -4,15 +4,15 @@ import unittest
 
 from pydantic import BaseModel
 
-from aind_data_schema_models.harp_types import HarpDeviceType
-from aind_data_schema_models.organizations import Organization
-from aind_data_schema_models.species import Species
-from aind_data_schema_models.mouse_anatomy import MouseAnatomy, MouseAnatomyModel, MouseEmgMuscles
-from aind_data_schema_models.mouse_developmental_stage import MouseDevelopmentalStage
-from aind_data_schema_models.human_developmental_stage import HumanDevelopmentalStage
-from aind_data_schema_models.drosophila_developmental_stage import DrosophilaDevelopmentalStage
-from aind_data_schema_models.celegans_developmental_stage import CElegansDevelopmentalStage
-from aind_data_schema_models.protocols import Protocols
+from biodata_models.harp_types import HarpDeviceType
+from biodata_models.organizations import Organization
+from biodata_models.species import Species
+from biodata_models.mouse_anatomy import MouseAnatomy, MouseAnatomyModel, MouseEmgMuscles
+from biodata_models.mouse_developmental_stage import MouseDevelopmentalStage
+from biodata_models.human_developmental_stage import HumanDevelopmentalStage
+from biodata_models.drosophila_developmental_stage import DrosophilaDevelopmentalStage
+from biodata_models.celegans_developmental_stage import CElegansDevelopmentalStage
+from biodata_models.protocols import Protocols
 
 
 class LiteralAndDefaultTests(unittest.TestCase):

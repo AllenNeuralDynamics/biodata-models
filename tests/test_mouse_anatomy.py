@@ -3,14 +3,14 @@
 import unittest
 
 from unittest.mock import patch
-from aind_data_schema_models.mouse_anatomy import search_emapa_exact_match, get_emapa_id
-from aind_data_schema_models.mouse_anatomy import MouseAnatomy, MouseAnatomyModel, Registry
+from biodata_models.mouse_anatomy import search_emapa_exact_match, get_emapa_id
+from biodata_models.mouse_anatomy import MouseAnatomy, MouseAnatomyModel, Registry
 
 
 class MouseAnatomyTests(unittest.TestCase):
     """Tests mouse anatomy"""
 
-    @patch("aind_data_schema_models.mouse_anatomy.requests.get")
+    @patch("biodata_models.mouse_anatomy.requests.get")
     def test_search_emapa_exact_match(self, mock_get):
         """Test search_emapa_exact_match function"""
         mock_response = {"response": {"docs": [{"iri": "http://example.com/EMAPA_12345", "label": "Test Label"}]}}
@@ -26,7 +26,7 @@ class MouseAnatomyTests(unittest.TestCase):
         with self.assertRaises(Exception):
             search_emapa_exact_match("Test Label")
 
-    @patch("aind_data_schema_models.mouse_anatomy.requests.get")
+    @patch("biodata_models.mouse_anatomy.requests.get")
     def test_get_emapa_id(self, mock_get):
         """Test get_emapa_id function"""
         mock_response = {"response": {"docs": [{"iri": "http://example.com/EMAPA_12345", "label": "Test Label"}]}}
@@ -37,7 +37,7 @@ class MouseAnatomyTests(unittest.TestCase):
         expected = "12345"
         self.assertEqual(result, expected)
 
-    @patch("aind_data_schema_models.mouse_anatomy.requests.get")
+    @patch("biodata_models.mouse_anatomy.requests.get")
     def test_get_emapa_id_no_match(self, mock_get):
         """Test get_emapa_id function with no match"""
         mock_response = {"response": {"docs": []}}
@@ -51,7 +51,7 @@ class MouseAnatomyTests(unittest.TestCase):
 class MouseAnatomyMetaTests(unittest.TestCase):
     """Tests MouseAnatomyMeta class"""
 
-    @patch("aind_data_schema_models.mouse_anatomy.get_emapa_id")
+    @patch("biodata_models.mouse_anatomy.get_emapa_id")
     def test_getattribute_existing_attribute(self, mock_get_emapa_id):
         """Test __getattribute__ for existing attribute"""
         mock_get_emapa_id.return_value = "12345"
@@ -65,7 +65,7 @@ class MouseAnatomyMetaTests(unittest.TestCase):
         self.assertEqual(result.registry, expected.registry)
         self.assertEqual(result.registry_identifier, expected.registry_identifier)
 
-    @patch("aind_data_schema_models.mouse_anatomy.get_emapa_id")
+    @patch("biodata_models.mouse_anatomy.get_emapa_id")
     def test_getattribute_nonexistent_attribute(self, mock_get_emapa_id):
         """Test __getattribute__ for nonexistent attribute"""
         mock_get_emapa_id.return_value = None

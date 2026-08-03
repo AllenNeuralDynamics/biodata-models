@@ -2,7 +2,7 @@
 
 import unittest
 
-from aind_data_schema_models.specimen_procedure_types import SpecimenProcedureType
+from biodata_models.specimen_procedure_types import SpecimenProcedureType
 
 
 class TestSpecimenProcedureTypes(unittest.TestCase):

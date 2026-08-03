@@ -3,8 +3,8 @@
 import unittest
 
 from unittest.mock import patch
-from aind_data_schema_models.drosophila_developmental_stage import search_fbdv_exact_match, get_fbdv_id
-from aind_data_schema_models.drosophila_developmental_stage import (
+from biodata_models.drosophila_developmental_stage import search_fbdv_exact_match, get_fbdv_id
+from biodata_models.drosophila_developmental_stage import (
     DrosophilaDevelopmentalStage,
     DrosophilaDevelopmentalStageModel,
     Registry,
@@ -14,7 +14,7 @@ from aind_data_schema_models.drosophila_developmental_stage import (
 class DrosophilaDevelopmentalStageTests(unittest.TestCase):
     """Tests drosophila developmental stage"""
 
-    @patch("aind_data_schema_models.drosophila_developmental_stage.requests.get")
+    @patch("biodata_models.drosophila_developmental_stage.requests.get")
     def test_search_fbdv_exact_match(self, mock_get):
         """Test search_fbdv_exact_match function"""
         mock_response = {"response": {"docs": [{"iri": "http://example.com/FBdv_00005369", "label": "Test Label"}]}}
@@ -30,7 +30,7 @@ class DrosophilaDevelopmentalStageTests(unittest.TestCase):
         with self.assertRaises(Exception):
             search_fbdv_exact_match("Test Label")
 
-    @patch("aind_data_schema_models.drosophila_developmental_stage.requests.get")
+    @patch("biodata_models.drosophila_developmental_stage.requests.get")
     def test_get_fbdv_id(self, mock_get):
         """Test get_fbdv_id function"""
         mock_response = {"response": {"docs": [{"iri": "http://example.com/FBdv_00005369", "label": "Test Label"}]}}
@@ -41,7 +41,7 @@ class DrosophilaDevelopmentalStageTests(unittest.TestCase):
         expected = "00005369"
         self.assertEqual(result, expected)
 
-    @patch("aind_data_schema_models.drosophila_developmental_stage.requests.get")
+    @patch("biodata_models.drosophila_developmental_stage.requests.get")
     def test_get_fbdv_id_no_match(self, mock_get):
         """Test get_fbdv_id function with no match"""
         mock_response = {"response": {"docs": []}}
@@ -55,7 +55,7 @@ class DrosophilaDevelopmentalStageTests(unittest.TestCase):
 class DrosophilaDevelopmentalStageMetaTests(unittest.TestCase):
     """Tests DrosophilaDevelopmentalStageMeta class"""
 
-    @patch("aind_data_schema_models.drosophila_developmental_stage.get_fbdv_id")
+    @patch("biodata_models.drosophila_developmental_stage.get_fbdv_id")
     def test_getattribute_existing_attribute(self, mock_get_fbdv_id):
         """Test __getattribute__ for existing attribute"""
         mock_get_fbdv_id.return_value = "00005369"
@@ -69,7 +69,7 @@ class DrosophilaDevelopmentalStageMetaTests(unittest.TestCase):
         self.assertEqual(result.registry, expected.registry)
         self.assertEqual(result.registry_identifier, expected.registry_identifier)
 
-    @patch("aind_data_schema_models.drosophila_developmental_stage.get_fbdv_id")
+    @patch("biodata_models.drosophila_developmental_stage.get_fbdv_id")
     def test_getattribute_nonexistent_attribute(self, mock_get_fbdv_id):
         """Test __getattribute__ for nonexistent attribute"""
         mock_get_fbdv_id.return_value = None

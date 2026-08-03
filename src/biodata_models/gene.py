@@ -5,7 +5,7 @@ import re
 import requests
 from pydantic import BaseModel, ConfigDict
 
-from aind_data_schema_models.registries import Registry
+from biodata_models.registries import Registry
 
 
 class NucleotideModel(BaseModel):

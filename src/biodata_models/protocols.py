@@ -6,8 +6,8 @@ from typing import Union
 from pydantic import ConfigDict, Field
 from typing_extensions import Annotated
 
-from aind_data_schema_models.pid_names import BaseName
-from aind_data_schema_models.registries import Registry
+from biodata_models.pid_names import BaseName
+from biodata_models.registries import Registry
 
 
 class ProtocolModel(BaseName):

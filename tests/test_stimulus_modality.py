@@ -2,7 +2,7 @@
 
 import unittest
 
-from aind_data_schema_models.stimulus_modality import StimulusModality
+from biodata_models.stimulus_modality import StimulusModality
 
 
 class TestStimulusModality(unittest.TestCase):

@@ -2,8 +2,8 @@
 
 import unittest
 
-from aind_data_schema_models.pid_names import PIDName
-from aind_data_schema_models.registries import Registry
+from biodata_models.pid_names import PIDName
+from biodata_models.registries import Registry
 
 
 class TestPidNames(unittest.TestCase):

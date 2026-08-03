@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
 
-from aind_data_schema_models.gene import Gene, NucleotideModel
+from biodata_models.gene import Gene, NucleotideModel
 
 
 class TestGene(unittest.TestCase):
@@ -17,7 +17,7 @@ class TestGene(unittest.TestCase):
         with open(resource_path, "r") as f:
             self.mock_genbank_text = f.read()
 
-    @patch("aind_data_schema_models.gene.requests.get")
+    @patch("biodata_models.gene.requests.get")
     def test_from_genbank_accession_id(self, mock_get):
         """Test fetching nucleotide data from GenBank accession ID."""
         # Setup mock response
@@ -34,7 +34,7 @@ class TestGene(unittest.TestCase):
         self.assertEqual(nucleotide.registry.name, "GENBANK")
         self.assertEqual(nucleotide.name, "gfp")
 
-    @patch("aind_data_schema_models.gene.requests.get")
+    @patch("biodata_models.gene.requests.get")
     def test_from_genbank_accession_id_blank_response_raises(self, mock_get):
         """Test that a blank GenBank response raises a ValueError."""
         # Setup mock response with blank text
@@ -47,7 +47,7 @@ class TestGene(unittest.TestCase):
         with self.assertRaises(ValueError):
             Gene.from_genbank_accession_id(accession_id)
 
-    @patch("aind_data_schema_models.gene.requests.get")
+    @patch("biodata_models.gene.requests.get")
     def test_from_genbank_accession_id_missing_gene_name_raises(self, mock_get):
         """Test that missing gene name in GenBank response raises a ValueError."""
         # Setup mock response with DEFINITION but no gene name

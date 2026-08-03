@@ -4,7 +4,7 @@ import unittest
 from decimal import Decimal
 from typing import TypeVar
 
-from aind_data_schema_models.units import SizeUnit
+from biodata_models.units import SizeUnit
 
 ScalarType = TypeVar("ScalarType", Decimal, int)
 

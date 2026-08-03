@@ -1,7 +1,7 @@
 """Integration test for MouseAnatomy model EMAPA lookup."""
 
 import sys
-from aind_data_schema_models.mouse_anatomy import MouseAnatomy
+from biodata_models.mouse_anatomy import MouseAnatomy
 
 
 def main():

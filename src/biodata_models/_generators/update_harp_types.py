@@ -1,6 +1,6 @@
 """Update the harp type CSV file"""
 
-from aind_data_schema_models._generators.dev_utils import update_harp_types
+from biodata_models._generators.dev_utils import update_harp_types
 
 
 if __name__ == "__main__":

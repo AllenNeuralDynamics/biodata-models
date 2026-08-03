@@ -3,7 +3,7 @@
 from typing import Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field
-from aind_data_schema_models.registries import Registry
+from biodata_models.registries import Registry
 
 
 class BaseName(BaseModel):

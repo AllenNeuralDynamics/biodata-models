@@ -1,4 +1,4 @@
-# aind-data-schema-models
+# biodata-models
 
 [![License](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 ![Code Style](https://img.shields.io/badge/code%20style-black-black)
@@ -9,7 +9,7 @@
 
 ## Installation
 
-`aind-data-schema-models` is a dependency of `aind-data-schema`. You should not need to install it directly.
+`biodata-models` is a dependency of `aind-data-schema`. You should not need to install it directly.
 
 ## Contributing
 

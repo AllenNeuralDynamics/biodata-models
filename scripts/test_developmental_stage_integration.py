@@ -2,10 +2,10 @@
 
 import sys
 
-from aind_data_schema_models.mouse_developmental_stage import MouseDevelopmentalStage
-from aind_data_schema_models.human_developmental_stage import HumanDevelopmentalStage
-from aind_data_schema_models.drosophila_developmental_stage import DrosophilaDevelopmentalStage
-from aind_data_schema_models.celegans_developmental_stage import CElegansDevelopmentalStage
+from biodata_models.mouse_developmental_stage import MouseDevelopmentalStage
+from biodata_models.human_developmental_stage import HumanDevelopmentalStage
+from biodata_models.drosophila_developmental_stage import DrosophilaDevelopmentalStage
+from biodata_models.celegans_developmental_stage import CElegansDevelopmentalStage
 
 
 def check(label, model, expected_name, expected_registry):

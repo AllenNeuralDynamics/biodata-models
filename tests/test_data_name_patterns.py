@@ -3,7 +3,7 @@
 import unittest
 from datetime import datetime, timezone
 
-from aind_data_schema_models.data_name_patterns import (
+from biodata_models.data_name_patterns import (
     DataRegex,
     DataRegexLegacy,
     RegexParts,
