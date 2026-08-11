@@ -19,9 +19,24 @@ def check(label, model, expected_name, expected_registry):
 def main():
     """Main function to test developmental stage ontology integrations"""
     try:
-        check("MouseDevelopmentalStage.LIFE_CYCLE_STAGE", MouseDevelopmentalStage.LIFE_CYCLE_STAGE, "life cycle stage", "MMUSDV")
-        check("HumanDevelopmentalStage.ADULT_STAGE", HumanDevelopmentalStage.ADULT_STAGE, "adult stage", "HSAPDV")
-        check("DrosophilaDevelopmentalStage.ADULT_STAGE", DrosophilaDevelopmentalStage.ADULT_STAGE, "adult stage", "FBDV")
+        check(
+            "MouseDevelopmentalStage.LIFE_CYCLE_STAGE",
+            MouseDevelopmentalStage.LIFE_CYCLE_STAGE,
+            "life cycle stage",
+            "MMUSDV"
+        )
+        check(
+            "HumanDevelopmentalStage.ADULT_STAGE",
+            HumanDevelopmentalStage.ADULT_STAGE,
+            "adult stage",
+            "HSAPDV"
+        )
+        check(
+            "DrosophilaDevelopmentalStage.ADULT_STAGE",
+            DrosophilaDevelopmentalStage.ADULT_STAGE,
+            "adult stage",
+            "FBDV"
+        )
         check(
             "CElegansDevelopmentalStage.C__ELEGANS_LIFE_STAGE",
             CElegansDevelopmentalStage.C__ELEGANS_LIFE_STAGE,
