@@ -18,13 +18,13 @@ class StrainModel(BaseModel):
     registry_identifier: Optional[str] = Field(default=None)
 
 
-class _C57Bl_6J(StrainModel):
-    """Model C57BL/6J"""
+class _Unknown(StrainModel):
+    """Model Unknown"""
 
-    name: Literal["C57BL/6J"] = "C57BL/6J"
+    name: Literal["Unknown"] = "Unknown"
     species: Literal["Mus musculus"] = "Mus musculus"
-    registry: Optional[Registry] = Field(default=Registry.MGI)
-    registry_identifier: Optional[str] = Field(default="MGI:3028467")
+    registry: Optional[Registry] = Field(default=None)
+    registry_identifier: Optional[str] = Field(default=None)
 
 
 class _Balb_C(StrainModel):
@@ -36,27 +36,27 @@ class _Balb_C(StrainModel):
     registry_identifier: Optional[str] = Field(default="MGI:2159737")
 
 
-class _Unknown(StrainModel):
-    """Model Unknown"""
+class _C57Bl_6J(StrainModel):
+    """Model C57BL/6J"""
 
-    name: Literal["Unknown"] = "Unknown"
+    name: Literal["C57BL/6J"] = "C57BL/6J"
     species: Literal["Mus musculus"] = "Mus musculus"
-    registry: Optional[Registry] = Field(default=None)
-    registry_identifier: Optional[str] = Field(default=None)
+    registry: Optional[Registry] = Field(default=Registry.MGI)
+    registry_identifier: Optional[str] = Field(default="MGI:3028467")
 
 
 class Strain:
     """Strain"""
 
-    C57BL_6J = _C57Bl_6J()
+    UNKNOWN = _Unknown()
 
     BALB_C = _Balb_C()
 
-    UNKNOWN = _Unknown()
+    C57BL_6J = _C57Bl_6J()
 
     ALL = tuple(StrainModel.__subclasses__())
 
-    ONE_OF = Annotated[Union[_C57Bl_6J, _Balb_C, _Unknown], Field(discriminator="name")]
+    ONE_OF = Annotated[Union[_Unknown, _Balb_C, _C57Bl_6J], Field(discriminator="name")]
 
 
 class SpeciesModel(BaseModel):
@@ -132,6 +132,15 @@ class _Lama_Glama(SpeciesModel):
     registry_identifier: Literal["NCBI:txid9844"] = "NCBI:txid9844"
 
 
+class _Macaca_Fascicularis(SpeciesModel):
+    """Model Macaca fascicularis"""
+
+    name: Literal["Macaca fascicularis"] = "Macaca fascicularis"
+    common_name: Literal["Crab-eating macaque"] = "Crab-eating macaque"
+    registry: Registry = Registry.NCBI
+    registry_identifier: Literal["NCBI:txid9541"] = "NCBI:txid9541"
+
+
 class _Macaca_Mulatta(SpeciesModel):
     """Model Macaca mulatta"""
 
@@ -139,6 +148,15 @@ class _Macaca_Mulatta(SpeciesModel):
     common_name: Literal["Rhesus macaque"] = "Rhesus macaque"
     registry: Registry = Registry.NCBI
     registry_identifier: Literal["NCBI:txid9544"] = "NCBI:txid9544"
+
+
+class _Macaca_Nemestrina(SpeciesModel):
+    """Model Macaca nemestrina"""
+
+    name: Literal["Macaca nemestrina"] = "Macaca nemestrina"
+    common_name: Literal["Pig-tailed macaque"] = "Pig-tailed macaque"
+    registry: Registry = Registry.NCBI
+    registry_identifier: Literal["NCBI:txid9545"] = "NCBI:txid9545"
 
 
 class _Mus_Musculus(SpeciesModel):
@@ -168,6 +186,15 @@ class _Rattus_Norvegicus(SpeciesModel):
     registry_identifier: Literal["NCBI:txid10116"] = "NCBI:txid10116"
 
 
+class _Saimiri_Sciureus(SpeciesModel):
+    """Model Saimiri sciureus"""
+
+    name: Literal["Saimiri sciureus"] = "Saimiri sciureus"
+    common_name: Literal["Common squirrel monkey"] = "Common squirrel monkey"
+    registry: Registry = Registry.NCBI
+    registry_identifier: Literal["NCBI:txid9521"] = "NCBI:txid9521"
+
+
 class _Vicuna_Pacos(SpeciesModel):
     """Model Vicuna pacos"""
 
@@ -187,10 +214,13 @@ class Species:
     CHICKEN = _Gallus_Gallus()
     HUMAN = _Homo_Sapiens()
     LLAMA = _Lama_Glama()
+    CRAB_EATING_MACAQUE = _Macaca_Fascicularis()
     RHESUS_MACAQUE = _Macaca_Mulatta()
+    PIG_TAILED_MACAQUE = _Macaca_Nemestrina()
     HOUSE_MOUSE = _Mus_Musculus()
     EUROPEAN_RABBIT = _Oryctolagus_Cuniculus()
     NORWAY_RAT = _Rattus_Norvegicus()
+    COMMON_SQUIRREL_MONKEY = _Saimiri_Sciureus()
     ALPACA = _Vicuna_Pacos()
 
     ALL = tuple(SpeciesModel.__subclasses__())
@@ -204,10 +234,13 @@ class Species:
             _Gallus_Gallus,
             _Homo_Sapiens,
             _Lama_Glama,
+            _Macaca_Fascicularis,
             _Macaca_Mulatta,
+            _Macaca_Nemestrina,
             _Mus_Musculus,
             _Oryctolagus_Cuniculus,
             _Rattus_Norvegicus,
+            _Saimiri_Sciureus,
             _Vicuna_Pacos,
         ],
         Field(discriminator="name"),

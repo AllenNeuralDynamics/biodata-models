@@ -2,6 +2,9 @@ name,species_registry_abbreviation,species_registry_identifier,strain,strain_reg
 Callithrix jacchus,NCBI,NCBI:txid9483,default,,,Common marmoset
 Homo sapiens,NCBI,NCBI:txid9606,default,,,Human
 Macaca mulatta,NCBI,NCBI:txid9544,default,,,Rhesus macaque
+Macaca fascicularis,NCBI,NCBI:txid9541,default,,,Crab-eating macaque
+Macaca nemestrina,NCBI,NCBI:txid9545,default,,,Pig-tailed macaque
+Saimiri sciureus,NCBI,NCBI:txid9521,default,,,Common squirrel monkey
 Mus musculus,NCBI,NCBI:txid10090,C57BL/6J,MGI,MGI:3028467,House mouse
 Mus musculus,NCBI,NCBI:txid10090,BALB/c,MGI,MGI:2159737,House mouse
 Mus musculus,NCBI,NCBI:txid10090,Unknown,,,House mouse
