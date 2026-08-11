@@ -99,6 +99,15 @@ class _Allied(OrganizationModel):
     registry_identifier: Optional[str] = Field(default=None)
 
 
+class _Antibodies_Inc(OrganizationModel):
+    """Model Antibodies Inc"""
+
+    name: Literal["Antibodies Inc"] = "Antibodies Inc"
+    abbreviation: Literal[None] = None
+    registry: Optional[Registry] = Field(default=None)
+    registry_identifier: Optional[str] = Field(default=None)
+
+
 class _Applied_Scientific_Instrumentation(OrganizationModel):
     """Model Applied Scientific Instrumentation"""
 
@@ -870,6 +879,15 @@ class _Raspberry_Pi(OrganizationModel):
     registry_identifier: Optional[str] = Field(default=None)
 
 
+class _Rockland_Immunochemicals(OrganizationModel):
+    """Model Rockland Immunochemicals"""
+
+    name: Literal["Rockland Immunochemicals"] = "Rockland Immunochemicals"
+    abbreviation: Literal["ROCKLAND"] = "ROCKLAND"
+    registry: Optional[Registry] = Field(default=Registry.ROR)
+    registry_identifier: Optional[str] = Field(default="02z2r2t61")
+
+
 class _Sicgen(OrganizationModel):
     """Model SICGEN"""
 
@@ -967,6 +985,15 @@ class _Stanford_University(OrganizationModel):
     abbreviation: Literal[None] = None
     registry: Optional[Registry] = Field(default=Registry.ROR)
     registry_identifier: Optional[str] = Field(default="00f54p054")
+
+
+class _Synaptic_Systems(OrganizationModel):
+    """Model Synaptic Systems"""
+
+    name: Literal["Synaptic Systems"] = "Synaptic Systems"
+    abbreviation: Literal[None] = None
+    registry: Optional[Registry] = Field(default=None)
+    registry_identifier: Optional[str] = Field(default=None)
 
 
 class _Te_Connectivity(OrganizationModel):
@@ -1152,6 +1179,7 @@ class Organization:
     AIBS = _Allen_Institute_For_Brain_Science()
     AIND = _Allen_Institute_For_Neural_Dynamics()
     ALLIED = _Allied()
+    ANTIBODIES_INC = _Antibodies_Inc()
     ASI = _Applied_Scientific_Instrumentation()
     ARDUINO = _Arduino()
     ARECONT_VISION_COSTAR = _Arecont_Vision_Costar()
@@ -1237,6 +1265,7 @@ class Organization:
     PRIZMATIX = _Prizmatix()
     QUANTIFI = _Quantifi()
     RASPBERRY_PI = _Raspberry_Pi()
+    ROCKLAND = _Rockland_Immunochemicals()
     SICGEN = _Sicgen()
     SAME_SKY = _Same_Sky()
     SCHNEIDER_KREUZNACH = _Schneider_Kreuznach()
@@ -1248,6 +1277,7 @@ class Organization:
     SPECTRA_PHYSICS = _Spectra_Physics()
     SPINNAKER = _Spinnaker()
     STANFORD_UNIVERSITY = _Stanford_University()
+    SYNAPTIC_SYSTEMS = _Synaptic_Systems()
     TE_CONNECTIVITY = _Te_Connectivity()
     TAMRON = _Tamron()
     TMC = _Technical_Manufacturing_Corporation()
@@ -1281,6 +1311,7 @@ class Organization:
             _Allen_Institute_For_Brain_Science,
             _Allen_Institute_For_Neural_Dynamics,
             _Allied,
+            _Antibodies_Inc,
             _Applied_Scientific_Instrumentation,
             _Arduino,
             _Arecont_Vision_Costar,
@@ -1366,6 +1397,7 @@ class Organization:
             _Prizmatix,
             _Quantifi,
             _Raspberry_Pi,
+            _Rockland_Immunochemicals,
             _Sicgen,
             _Same_Sky,
             _Schneider_Kreuznach,
@@ -1377,6 +1409,7 @@ class Organization:
             _Spectra_Physics,
             _Spinnaker,
             _Stanford_University,
+            _Synaptic_Systems,
             _Te_Connectivity,
             _Tamron,
             _Technical_Manufacturing_Corporation,
