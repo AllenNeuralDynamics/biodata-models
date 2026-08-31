@@ -2,7 +2,7 @@
 
 import unittest
 
-from aind_data_schema_models.atlas import AtlasName
+from biodata_models.atlas import AtlasName
 
 
 class TestAtlasName(unittest.TestCase):

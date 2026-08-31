@@ -13,7 +13,7 @@ class RegexParts(str, Enum):
 
 
 class DataRegexLegacy(str, Enum):
-    """Deprecated regular expression patterns from aind-data-schema-models v1 and earlier"""
+    """Deprecated regular expression patterns from biodata-models v1 and earlier"""
 
     # Deprecated patterns, keeping for legacy support
     DATA = f"^(?P<label>.+?)_(?P<c_date>{RegexParts.DATE.value})_(?P<c_time>{RegexParts.TIME.value})$"

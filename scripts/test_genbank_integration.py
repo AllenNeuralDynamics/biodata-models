@@ -2,7 +2,7 @@
 
 import sys
 
-from aind_data_schema_models.gene import Gene
+from biodata_models.gene import Gene
 
 
 def main():

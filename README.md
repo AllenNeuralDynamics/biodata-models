@@ -1,15 +1,21 @@
-# aind-data-schema-models
+# biodata-models
 
 [![License](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 ![Code Style](https://img.shields.io/badge/code%20style-black-black)
 [![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 ![Interrogate](https://img.shields.io/badge/interrogate-100.0%25-brightgreen)
 ![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen?logo=codecov)
-![Python](https://img.shields.io/badge/python->=3.10,<3.14-blue?logo=python)
+![Python](https://img.shields.io/badge/python->=3.10,<3.15-blue?logo=python)
 
 ## Installation
 
-`aind-data-schema-models` is a dependency of `aind-data-schema`. You should not need to install it directly.
+`biodata-models` provides the reusable data models used by downstream schema packages.
+
+Install it directly with:
+
+```bash
+pip install biodata-models
+```
 
 ## Contributing
 
@@ -41,4 +47,4 @@ There are a few special cases, e.g. if data are missing in columns they will sho
 
 Internal registries need to be enumerated in the `aind-data-schema` file `src/aind_data_schema/utils/docs/registries_generator.py` in the variable `registries`. This list controls what classes will have documentation automatically generated and cross-referenced correctly.
 
-If you add a new **external** registry, you need to write the documentation manually in the `aind-data-schema` file `docs/source/aind_data_schema_models/external.md`.
+If you add a new **external** registry, you need to write the documentation manually in the `aind-data-schema` file `docs/source/biodata_models/external.md`.

@@ -3,8 +3,8 @@
 import unittest
 
 from unittest.mock import patch
-from aind_data_schema_models.celegans_developmental_stage import search_wbls_exact_match, get_wbls_id
-from aind_data_schema_models.celegans_developmental_stage import (
+from biodata_models.celegans_developmental_stage import search_wbls_exact_match, get_wbls_id
+from biodata_models.celegans_developmental_stage import (
     CElegansDevelopmentalStage,
     CElegansDevelopmentalStageModel,
     Registry,
@@ -14,7 +14,7 @@ from aind_data_schema_models.celegans_developmental_stage import (
 class CElegansDevelopmentalStageTests(unittest.TestCase):
     """Tests C. elegans developmental stage"""
 
-    @patch("aind_data_schema_models.celegans_developmental_stage.requests.get")
+    @patch("biodata_models.celegans_developmental_stage.requests.get")
     def test_search_wbls_exact_match(self, mock_get):
         """Test search_wbls_exact_match function"""
         mock_response = {"response": {"docs": [{"iri": "http://example.com/WBls_0000825", "label": "Test Label"}]}}
@@ -30,7 +30,7 @@ class CElegansDevelopmentalStageTests(unittest.TestCase):
         with self.assertRaises(Exception):
             search_wbls_exact_match("Test Label")
 
-    @patch("aind_data_schema_models.celegans_developmental_stage.requests.get")
+    @patch("biodata_models.celegans_developmental_stage.requests.get")
     def test_get_wbls_id(self, mock_get):
         """Test get_wbls_id function"""
         mock_response = {"response": {"docs": [{"iri": "http://example.com/WBls_0000825", "label": "Test Label"}]}}
@@ -41,7 +41,7 @@ class CElegansDevelopmentalStageTests(unittest.TestCase):
         expected = "0000825"
         self.assertEqual(result, expected)
 
-    @patch("aind_data_schema_models.celegans_developmental_stage.requests.get")
+    @patch("biodata_models.celegans_developmental_stage.requests.get")
     def test_get_wbls_id_no_match(self, mock_get):
         """Test get_wbls_id function with no match"""
         mock_response = {"response": {"docs": []}}
@@ -55,7 +55,7 @@ class CElegansDevelopmentalStageTests(unittest.TestCase):
 class CElegansDevelopmentalStageMetaTests(unittest.TestCase):
     """Tests CElegansDevelopmentalStageMeta class"""
 
-    @patch("aind_data_schema_models.celegans_developmental_stage.get_wbls_id")
+    @patch("biodata_models.celegans_developmental_stage.get_wbls_id")
     def test_getattribute_existing_attribute(self, mock_get_wbls_id):
         """Test __getattribute__ for existing attribute"""
         mock_get_wbls_id.return_value = "0000825"
@@ -69,7 +69,7 @@ class CElegansDevelopmentalStageMetaTests(unittest.TestCase):
         self.assertEqual(result.registry, expected.registry)
         self.assertEqual(result.registry_identifier, expected.registry_identifier)
 
-    @patch("aind_data_schema_models.celegans_developmental_stage.get_wbls_id")
+    @patch("biodata_models.celegans_developmental_stage.get_wbls_id")
     def test_getattribute_nonexistent_attribute(self, mock_get_wbls_id):
         """Test __getattribute__ for nonexistent attribute"""
         mock_get_wbls_id.return_value = None

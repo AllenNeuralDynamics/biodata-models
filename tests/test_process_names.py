@@ -2,7 +2,7 @@
 
 import unittest
 
-from aind_data_schema_models.process_names import ProcessName
+from biodata_models.process_names import ProcessName
 
 
 class TestProcessName(unittest.TestCase):

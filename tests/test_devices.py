@@ -2,7 +2,7 @@
 
 import unittest
 
-from aind_data_schema_models.devices import BinMode
+from biodata_models.devices import BinMode
 
 
 class UnitsTests(unittest.TestCase):

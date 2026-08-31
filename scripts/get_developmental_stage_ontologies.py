@@ -11,10 +11,10 @@ import requests
 API_BASE = "https://www.ebi.ac.uk/ols4/api"
 
 ONTOLOGIES = {
-    "mmusdv": "src/aind_data_schema_models/_generators/models/mouse_developmental_stage.csv",
-    "hsapdv": "src/aind_data_schema_models/_generators/models/human_developmental_stage.csv",
-    "fbdv": "src/aind_data_schema_models/_generators/models/drosophila_developmental_stage.csv",
-    "wbls": "src/aind_data_schema_models/_generators/models/celegans_developmental_stage.csv",
+    "mmusdv": "src/biodata_models/_generators/models/mouse_developmental_stage.csv",
+    "hsapdv": "src/biodata_models/_generators/models/human_developmental_stage.csv",
+    "fbdv": "src/biodata_models/_generators/models/drosophila_developmental_stage.csv",
+    "wbls": "src/biodata_models/_generators/models/celegans_developmental_stage.csv",
 }
 
 
