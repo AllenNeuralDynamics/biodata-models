@@ -2,7 +2,7 @@
 
 import unittest
 from unittest.mock import patch, MagicMock
-from aind_data_schema_models._generators.dev_utils import to_class_name, to_class_name_underscored, update_harp_types
+from biodata_models._generators.dev_utils import to_class_name, to_class_name_underscored, update_harp_types
 
 
 class TestDevUtils(unittest.TestCase):
@@ -46,8 +46,8 @@ class TestDevUtils(unittest.TestCase):
         # Empty string
         self.assertEqual(to_class_name_underscored(""), "_")  # Should still return an underscore
 
-    @patch("aind_data_schema_models._generators.dev_utils.requests.get")
-    @patch("aind_data_schema_models._generators.dev_utils.pd.DataFrame.to_csv")
+    @patch("biodata_models._generators.dev_utils.requests.get")
+    @patch("biodata_models._generators.dev_utils.pd.DataFrame.to_csv")
     def test_update_harp_types_success(self, mock_to_csv, mock_get):
         """Test successful execution of update_harp_types function"""
 
@@ -86,8 +86,8 @@ devices:
         # Verify function returns None (as it doesn't have a return statement)
         self.assertIsNone(result)
 
-    @patch("aind_data_schema_models._generators.dev_utils.requests.get")
-    @patch("aind_data_schema_models._generators.dev_utils.pd.DataFrame.to_csv")
+    @patch("biodata_models._generators.dev_utils.requests.get")
+    @patch("biodata_models._generators.dev_utils.pd.DataFrame.to_csv")
     def test_update_harp_types_custom_url(self, mock_to_csv, mock_get):
         """Test update_harp_types with custom URL"""
 
@@ -118,8 +118,8 @@ devices:
         # Verify CSV was saved
         mock_to_csv.assert_called_once()
 
-    @patch("aind_data_schema_models._generators.dev_utils.requests.get")
-    @patch("aind_data_schema_models._generators.dev_utils.pd.DataFrame.to_csv")
+    @patch("biodata_models._generators.dev_utils.requests.get")
+    @patch("biodata_models._generators.dev_utils.pd.DataFrame.to_csv")
     def test_update_harp_types_empty_devices(self, mock_to_csv, mock_get):
         """Test update_harp_types with empty devices list"""
 
@@ -142,9 +142,9 @@ devices: {}
         # Verify CSV was still saved (even if empty)
         mock_to_csv.assert_called_once()
 
-    @patch("aind_data_schema_models._generators.dev_utils.requests.get")
-    @patch("aind_data_schema_models._generators.dev_utils.pd.DataFrame.to_csv")
-    @patch("aind_data_schema_models._generators.dev_utils.pd.DataFrame")
+    @patch("biodata_models._generators.dev_utils.requests.get")
+    @patch("biodata_models._generators.dev_utils.pd.DataFrame.to_csv")
+    @patch("biodata_models._generators.dev_utils.pd.DataFrame")
     def test_update_harp_types_numeric_whoami(self, mock_dataframe, mock_to_csv, mock_get):
         """Test update_harp_types ensures whoami is converted to string"""
 

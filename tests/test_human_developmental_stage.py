@@ -3,8 +3,8 @@
 import unittest
 
 from unittest.mock import patch
-from aind_data_schema_models.human_developmental_stage import search_hsapdv_exact_match, get_hsapdv_id
-from aind_data_schema_models.human_developmental_stage import (
+from biodata_models.human_developmental_stage import search_hsapdv_exact_match, get_hsapdv_id
+from biodata_models.human_developmental_stage import (
     HumanDevelopmentalStage,
     HumanDevelopmentalStageModel,
     Registry,
@@ -14,7 +14,7 @@ from aind_data_schema_models.human_developmental_stage import (
 class HumanDevelopmentalStageTests(unittest.TestCase):
     """Tests human developmental stage"""
 
-    @patch("aind_data_schema_models.human_developmental_stage.requests.get")
+    @patch("biodata_models.human_developmental_stage.requests.get")
     def test_search_hsapdv_exact_match(self, mock_get):
         """Test search_hsapdv_exact_match function"""
         mock_response = {"response": {"docs": [{"iri": "http://example.com/HsapDv_0000258", "label": "Test Label"}]}}
@@ -30,7 +30,7 @@ class HumanDevelopmentalStageTests(unittest.TestCase):
         with self.assertRaises(Exception):
             search_hsapdv_exact_match("Test Label")
 
-    @patch("aind_data_schema_models.human_developmental_stage.requests.get")
+    @patch("biodata_models.human_developmental_stage.requests.get")
     def test_get_hsapdv_id(self, mock_get):
         """Test get_hsapdv_id function"""
         mock_response = {"response": {"docs": [{"iri": "http://example.com/HsapDv_0000258", "label": "Test Label"}]}}
@@ -41,7 +41,7 @@ class HumanDevelopmentalStageTests(unittest.TestCase):
         expected = "0000258"
         self.assertEqual(result, expected)
 
-    @patch("aind_data_schema_models.human_developmental_stage.requests.get")
+    @patch("biodata_models.human_developmental_stage.requests.get")
     def test_get_hsapdv_id_no_match(self, mock_get):
         """Test get_hsapdv_id function with no match"""
         mock_response = {"response": {"docs": []}}
@@ -55,7 +55,7 @@ class HumanDevelopmentalStageTests(unittest.TestCase):
 class HumanDevelopmentalStageMetaTests(unittest.TestCase):
     """Tests HumanDevelopmentalStageMeta class"""
 
-    @patch("aind_data_schema_models.human_developmental_stage.get_hsapdv_id")
+    @patch("biodata_models.human_developmental_stage.get_hsapdv_id")
     def test_getattribute_existing_attribute(self, mock_get_hsapdv_id):
         """Test __getattribute__ for existing attribute"""
         mock_get_hsapdv_id.return_value = "0000258"
@@ -69,7 +69,7 @@ class HumanDevelopmentalStageMetaTests(unittest.TestCase):
         self.assertEqual(result.registry, expected.registry)
         self.assertEqual(result.registry_identifier, expected.registry_identifier)
 
-    @patch("aind_data_schema_models.human_developmental_stage.get_hsapdv_id")
+    @patch("biodata_models.human_developmental_stage.get_hsapdv_id")
     def test_getattribute_nonexistent_attribute(self, mock_get_hsapdv_id):
         """Test __getattribute__ for nonexistent attribute"""
         mock_get_hsapdv_id.return_value = None

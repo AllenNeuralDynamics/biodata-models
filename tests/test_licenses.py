@@ -2,7 +2,7 @@
 
 import unittest
 
-from aind_data_schema_models.licenses import License
+from biodata_models.licenses import License
 
 
 class UnitsTests(unittest.TestCase):

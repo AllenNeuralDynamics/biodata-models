@@ -2,7 +2,7 @@
 
 import unittest
 
-from aind_data_schema_models.protocols import Protocols
+from biodata_models.protocols import Protocols
 
 
 class TestProtocols(unittest.TestCase):

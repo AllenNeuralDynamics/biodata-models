@@ -3,7 +3,7 @@
 import unittest
 from pydantic import BaseModel
 
-from aind_data_schema_models.modalities import Modality
+from biodata_models.modalities import Modality
 
 
 class TestModality(unittest.TestCase):

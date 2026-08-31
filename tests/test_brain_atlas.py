@@ -1,7 +1,7 @@
 """Brain atlas tests"""
 
 import unittest
-from aind_data_schema_models.brain_atlas import CCFv3
+from biodata_models.brain_atlas import CCFv3
 
 
 class TestCCFStructure(unittest.TestCase):

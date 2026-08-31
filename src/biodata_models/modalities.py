@@ -5,7 +5,7 @@ from typing import Literal, Union
 from pydantic import ConfigDict, Field
 from typing_extensions import Annotated
 
-from aind_data_schema_models.pid_names import BaseName
+from biodata_models.pid_names import BaseName
 
 
 class ModalityModel(BaseName):

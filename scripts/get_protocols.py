@@ -10,7 +10,7 @@ import pandas as pd
 import os
 
 
-OUTPUT_CSV = "src/aind_data_schema_models/_generators/models/protocols.csv"
+OUTPUT_CSV = "src/biodata_models/_generators/models/protocols.csv"
 WORKSPACE_URI = "allen-institute-for-neural-dynamics"
 API_BASE = "https://www.protocols.io/api"
 

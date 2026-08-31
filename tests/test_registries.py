@@ -2,7 +2,7 @@
 
 import unittest
 
-from aind_data_schema_models.registries import Registry
+from biodata_models.registries import Registry
 
 
 class TestRegistry(unittest.TestCase):
