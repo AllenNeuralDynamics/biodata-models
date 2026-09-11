@@ -2,7 +2,7 @@
 
 import unittest
 
-from aind_data_schema_models.slap2_acquisition_type import Slap2AcquisitionType
+from biodata_models.slap2_acquisition_type import Slap2AcquisitionType
 
 
 class TestSlap2AcquisitionType(unittest.TestCase):

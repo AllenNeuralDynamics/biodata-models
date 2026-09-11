@@ -1,15 +1,15 @@
-"""Mouse developmental stage"""
+"""Drosophila developmental stage"""
 {% raw -%}
 from pydantic import BaseModel, ConfigDict
 import requests
 
-from aind_data_schema_models.registries import Registry
+from biodata_models.registries import Registry
 {% endraw %}
-"""Mouse developmental stage"""
+"""Drosophila developmental stage"""
 
 
-class MouseDevelopmentalStageModel(BaseModel):
-    """Base model for mouse developmental stage"""
+class DrosophilaDevelopmentalStageModel(BaseModel):
+    """Base model for drosophila developmental stage"""
 
     model_config = ConfigDict(frozen=True)
     name: str
@@ -17,8 +17,8 @@ class MouseDevelopmentalStageModel(BaseModel):
     registry_identifier: str
 
 
-def search_mmusdv_exact_match(class_name):
-    """Pull the exact name match from the MMUSDV ontology
+def search_fbdv_exact_match(class_name):
+    """Pull the exact name match from the FBDV ontology
 
     Parameters
     ----------
@@ -37,7 +37,7 @@ def search_mmusdv_exact_match(class_name):
     base_url = "https://www.ebi.ac.uk/ols4/api/search"
     params = {
         "q": class_name,
-        "ontology": "mmusdv",  # Specify the ontology
+        "ontology": "fbdv",  # Specify the ontology
         "type": "class",      # Search for classes
     }
     response = requests.get(base_url, params=params)
@@ -57,8 +57,8 @@ def search_mmusdv_exact_match(class_name):
         raise Exception(f"OLS query failed: {response.status_code}, {response.text}")
 
 
-def get_mmusdv_id(class_name):
-    """Get the MMUSDV ID for a given class name
+def get_fbdv_id(class_name):
+    """Get the FBDV ID for a given class name
 
     Parameters
     ----------
@@ -68,7 +68,7 @@ def get_mmusdv_id(class_name):
     -------
     int
     """
-    results = search_mmusdv_exact_match(class_name)
+    results = search_fbdv_exact_match(class_name)
 
     if results:
         return results[0]['iri'].split('_')[1]
@@ -76,11 +76,11 @@ def get_mmusdv_id(class_name):
         return None
 
 
-class MouseDevelopmentalStageMeta(type):
-    """Meta class for MouseDevelopmentalStage groups
+class DrosophilaDevelopmentalStageMeta(type):
+    """Meta class for DrosophilaDevelopmentalStage groups
     """
     def __getattribute__(cls, name):
-        """Custom get attribute function, validates developmental stage names against external MMUSDV registry
+        """Custom get attribute function, validates developmental stage names against external FBDV registry
 
         Parameters
         ----------
@@ -90,7 +90,7 @@ class MouseDevelopmentalStageMeta(type):
         Raises
         ------
         ValueError
-            Name not found in the MMUSDV registry
+            Name not found in the FBDV registry
         """
 
         # bypass
@@ -102,23 +102,23 @@ class MouseDevelopmentalStageMeta(type):
         if name in class_dict:
             original_name = super().__getattribute__(name)
 
-            mmusdv_id = get_mmusdv_id(original_name)
+            fbdv_id = get_fbdv_id(original_name)
 
-            if mmusdv_id:
-                return MouseDevelopmentalStageModel(
+            if fbdv_id:
+                return DrosophilaDevelopmentalStageModel(
                     name=original_name,
-                    registry=Registry.MMUSDV,
-                    registry_identifier=mmusdv_id,
+                    registry=Registry.FBDV,
+                    registry_identifier=fbdv_id,
                 )
             else:
-                raise ValueError(f"Could not find MMUSDV ID for {original_name}")
+                raise ValueError(f"Could not find FBDV ID for {original_name}")
 
         # second bypass for defined values
         return super().__getattribute__(name)
 
 
-class MouseDevelopmentalStage(metaclass=MouseDevelopmentalStageMeta):
-    """Mouse developmental stage"""
+class DrosophilaDevelopmentalStage(metaclass=DrosophilaDevelopmentalStageMeta):
+    """Drosophila developmental stage"""
 {% for _, row in data.iterrows() %}
     {{ row['name'] | to_class_name | upper }} = "{{ row['name'] }}"
 {%- endfor %}

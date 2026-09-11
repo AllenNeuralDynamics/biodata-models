@@ -2,7 +2,7 @@
 
 import unittest
 
-from aind_data_schema_models.coordinates import AxisName
+from biodata_models.coordinates import AxisName
 
 
 class UnitsTests(unittest.TestCase):

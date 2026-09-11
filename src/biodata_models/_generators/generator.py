@@ -3,7 +3,7 @@
 import argparse
 from jinja2 import Environment
 import pandas as pd
-from aind_data_schema_models._generators.dev_utils import to_class_name, to_class_name_underscored
+from biodata_models._generators.dev_utils import to_class_name, to_class_name_underscored
 from pathlib import Path
 import subprocess
 
@@ -101,7 +101,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--root-path",
         required=False,
-        default="./src/aind_data_schema_models/",
+        default="./src/biodata_models/",
         help="Path to the source folder of the project",
     )
     args = parser.parse_args()

@@ -2,7 +2,7 @@
 
 import unittest
 
-from aind_data_schema_models.reagent import FluorophoreType
+from biodata_models.reagent import FluorophoreType
 
 
 class UnitsTests(unittest.TestCase):
