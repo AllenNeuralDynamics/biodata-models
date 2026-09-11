@@ -9,9 +9,7 @@
 
 ## Installation
 
-`biodata-models` provides controlled vocabulary and registry models for `biodata-schema`.
-
-Generally, you shouldn't install this package on its own.
+`biodata-models` provides controlled vocabulary and registry models for `biodata-schema`. You shouldn't generally install this package in isolation.
 
 ## Contributing
 
