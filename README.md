@@ -9,13 +9,9 @@
 
 ## Installation
 
-`biodata-models` provides the reusable data models used by downstream schema packages.
+`biodata-models` provides controlled vocabulary and registry models for `biodata-schema`.
 
-Install it directly with:
-
-```bash
-pip install biodata-models
-```
+Generally, you shouldn't install this package on its own.
 
 ## Contributing
 
