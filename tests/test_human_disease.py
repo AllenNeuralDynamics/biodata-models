@@ -3,11 +3,7 @@
 import unittest
 from unittest.mock import Mock, patch
 
-from biodata_models.human_disease import (
-    HumanDisease,
-    HumanDiseaseModel,
-    get_human_disease_by_exact_name,
-)
+from biodata_models.human_disease import HumanDisease, HumanDiseaseModel
 from biodata_models.registries import Registry
 
 
@@ -98,38 +94,17 @@ class HumanDiseaseTests(unittest.TestCase):
         )
 
     @patch("biodata_models.human_disease.requests.get")
-    def test_get_human_disease_by_exact_name(self, mock_get):
-        """The exact-name helper returns one model and ignores nearby labels."""
-        mock_response = Mock()
-        mock_response.json.return_value = {
-            "response": {
-                "docs": [
-                    {"obo_id": "DOID:1", "label": "Alzheimer disease"},
-                    {"obo_id": "DOID:2", "label": "Alzheimer disease 2"},
-                ]
-            }
-        }
-        mock_get.return_value = mock_response
-
-        result = get_human_disease_by_exact_name("Alzheimer disease")
-
-        self.assertEqual(
-            result,
-            HumanDiseaseModel(name="Alzheimer disease", registry_identifier="DOID:1"),
-        )
-
-    @patch("biodata_models.human_disease.requests.get")
-    def test_get_human_disease_by_exact_name_returns_none_when_missing(self, mock_get):
-        """The exact-name helper returns None when no label matches."""
+    def test_get_by_name_returns_none_when_missing(self, mock_get):
+        """The class convenience method returns None when no label matches."""
         mock_response = Mock()
         mock_response.json.return_value = {"response": {"docs": []}}
         mock_get.return_value = mock_response
 
-        self.assertIsNone(get_human_disease_by_exact_name("not a disease"))
+        self.assertIsNone(HumanDisease.get_by_name("not a disease"))
 
     @patch("biodata_models.human_disease.requests.get")
-    def test_get_human_disease_by_exact_name_rejects_ambiguous_labels(self, mock_get):
-        """The exact-name helper does not choose arbitrarily between duplicate labels."""
+    def test_get_by_name_rejects_ambiguous_labels(self, mock_get):
+        """The class method does not choose arbitrarily between duplicate labels."""
         mock_response = Mock()
         mock_response.json.return_value = {
             "response": {
@@ -142,7 +117,7 @@ class HumanDiseaseTests(unittest.TestCase):
         mock_get.return_value = mock_response
 
         with self.assertRaises(ValueError):
-            get_human_disease_by_exact_name("Shared disease label")
+            HumanDisease.get_by_name("Shared disease label")
 
     @patch("biodata_models.human_disease.requests.get")
     def test_search_by_name_rejects_empty_name_and_invalid_limit(self, mock_get):

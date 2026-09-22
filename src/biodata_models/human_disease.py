@@ -5,7 +5,6 @@ from pydantic import BaseModel, ConfigDict
 
 from biodata_models.registries import Registry
 
-
 OLS_SEARCH_URL = "https://www.ebi.ac.uk/ols4/api/search"
 
 
