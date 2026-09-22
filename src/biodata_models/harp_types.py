@@ -189,6 +189,13 @@ class _Pycontroladapter(HarpDeviceTypeModel):
     whoami: Literal[1184] = 1184
 
 
+class _Quac(HarpDeviceTypeModel):
+    """Model Quac"""
+
+    name: Literal["Quac"] = "Quac"
+    whoami: Literal[1411] = 1411
+
+
 class _Rfidreader(HarpDeviceTypeModel):
     """Model RfidReader"""
 
@@ -357,6 +364,7 @@ class HarpDeviceType:
     PLUMA = _Pluma()
     POKE = _Poke()
     PYCONTROLADAPTER = _Pycontroladapter()
+    QUAC = _Quac()
     RFIDREADER = _Rfidreader()
     RGBARRAY = _Rgbarray()
     SIMPLEANALOGGENERATOR = _Simpleanaloggenerator()
@@ -407,6 +415,7 @@ class HarpDeviceType:
             _Pluma,
             _Poke,
             _Pycontroladapter,
+            _Quac,
             _Rfidreader,
             _Rgbarray,
             _Simpleanaloggenerator,
