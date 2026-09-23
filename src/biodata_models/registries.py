@@ -10,6 +10,7 @@ class Registry(str, Enum):
     WBLS = "C. elegans Development Ontology (WBLS)"
     DOI = "Digital Object Identifier (DOI)"
     FBDV = "Drosophila Development (FBDV)"
+    CLO = "Cell Line Ontology (CLO)"
     EMAPA = "Edinburgh Mouse Atlas Project (EMAPA)"
     HSAPDV = "Human Developmental Stages (HSAPDV)"
     MMUSDV = "Mouse Developmental Stages (MMUSDV)"
