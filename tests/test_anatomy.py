@@ -15,6 +15,11 @@ class AnatomyTests(unittest.TestCase):
         self.assertTrue(issubclass(MouseAnatomy, AnatomyModel))
         self.assertTrue(issubclass(HumanAnatomy, AnatomyModel))
 
+    def test_base_model_search_requires_ontology_configuration(self):
+        """The shared base cannot search without an ontology configuration."""
+        with self.assertRaisesRegex(NotImplementedError, "Use MouseAnatomy or HumanAnatomy"):
+            AnatomyModel.search_by_name("heart")
+
     def test_anatomy_term_round_trips_json(self):
         """Ontology-specific anatomy models retain Pydantic serialization behavior."""
         model = MouseAnatomy(name="heart", registry_identifier="EMAPA:16105")
