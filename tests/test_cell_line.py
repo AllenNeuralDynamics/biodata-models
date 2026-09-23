@@ -12,6 +12,7 @@ class CellLineTests(unittest.TestCase):
 
     @patch("biodata_models.cell_line.requests.get")
     def test_search_by_name_returns_active_clo_terms(self, mock_get):
+        """Test active CLO filtering and the OLS request."""
         response = mock_get.return_value
         response.json.return_value = {
             "response": {
@@ -62,6 +63,7 @@ class CellLineTests(unittest.TestCase):
 
     @patch("biodata_models.cell_line.requests.get")
     def test_search_by_name_exact_match(self, mock_get):
+        """Test case-insensitive exact-label matching."""
         mock_get.return_value.json.return_value = {
             "response": {
                 "docs": [
@@ -78,6 +80,7 @@ class CellLineTests(unittest.TestCase):
 
     @patch("biodata_models.cell_line.requests.get")
     def test_search_by_name_ignores_terms_without_clo_identifier(self, mock_get):
+        """Test terms from other ontologies are ignored."""
         mock_get.return_value.json.return_value = {
             "response": {
                 "docs": [
@@ -91,8 +94,25 @@ class CellLineTests(unittest.TestCase):
 
         self.assertEqual(result[0].registry_identifier, "CLO:0000123")
 
+    @patch("biodata_models.cell_line.requests.get")
+    def test_search_by_name_stops_at_limit(self, mock_get):
+        """Test search stops after returning the requested number of terms."""
+        mock_get.return_value.json.return_value = {
+            "response": {
+                "docs": [
+                    {"label": "HeLa cell", "obo_id": "CLO:0000001"},
+                    {"label": "HeLa S3 cell", "obo_id": "CLO:0000002"},
+                ]
+            }
+        }
+
+        result = CellLine.search_by_name("HeLa", limit=1)
+
+        self.assertEqual([term.registry_identifier for term in result], ["CLO:0000001"])
+
     @patch("biodata_models.cell_line.CellLine.search_by_name")
     def test_get_by_name_returns_exact_term(self, mock_search):
+        """Test retrieving the unique exact-label term."""
         expected = CellLineModel(name="HeLa", registry_identifier="CLO:0000001")
         mock_search.return_value = [expected]
 
@@ -101,6 +121,7 @@ class CellLineTests(unittest.TestCase):
 
     @patch("biodata_models.cell_line.CellLine.search_by_name", return_value=[])
     def test_get_by_name_returns_none_when_missing(self, _mock_search):
+        """Test missing exact-label terms return None."""
         self.assertIsNone(CellLine.get_by_name("Missing cell line"))
 
     @patch(
@@ -111,11 +132,13 @@ class CellLineTests(unittest.TestCase):
         ],
     )
     def test_get_by_name_rejects_ambiguous_labels(self, _mock_search):
+        """Test ambiguous exact-label terms raise ValueError."""
         with self.assertRaisesRegex(ValueError, "Multiple Cell Line Ontology terms"):
             CellLine.get_by_name("Duplicate")
 
     @patch("biodata_models.cell_line.requests.get")
     def test_search_by_name_rejects_invalid_input(self, mock_get):
+        """Test empty names and invalid limits are rejected before querying."""
         with self.assertRaisesRegex(ValueError, "name must not be empty"):
             CellLine.search_by_name("  ")
         with self.assertRaisesRegex(ValueError, "limit must be between 1 and 100"):
