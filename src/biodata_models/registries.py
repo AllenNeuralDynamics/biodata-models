@@ -11,6 +11,7 @@ class Registry(str, Enum):
     DOI = "Digital Object Identifier (DOI)"
     FBDV = "Drosophila Development (FBDV)"
     EMAPA = "Edinburgh Mouse Atlas Project (EMAPA)"
+    FMA = "Foundational Model of Anatomy (FMA)"
     HSAPDV = "Human Developmental Stages (HSAPDV)"
     MMUSDV = "Mouse Developmental Stages (MMUSDV)"
     MGI = "Mouse Genome Informatics (MGI)"
