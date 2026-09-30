@@ -13,6 +13,7 @@ class Registry(str, Enum):
     FBDV = "Drosophila Development (FBDV)"
     CLO = "Cell Line Ontology (CLO)"
     EMAPA = "Edinburgh Mouse Atlas Project (EMAPA)"
+    FMA = "Foundational Model of Anatomy (FMA)"
     HSAPDV = "Human Developmental Stages (HSAPDV)"
     MMUSDV = "Mouse Developmental Stages (MMUSDV)"
     MGI = "Mouse Genome Informatics (MGI)"
