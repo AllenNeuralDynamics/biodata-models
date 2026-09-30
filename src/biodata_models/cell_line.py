@@ -17,7 +17,7 @@ class CellLineModel(BaseModel):
     registry_identifier: str
 
 
-class CellLine:
+class CellLineLookup:
     """Search and resolve cell-line terms from the CLO ontology."""
 
     @classmethod

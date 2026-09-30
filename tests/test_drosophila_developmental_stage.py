@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import patch
 from biodata_models.drosophila_developmental_stage import search_fbdv_exact_match, get_fbdv_id
 from biodata_models.drosophila_developmental_stage import (
-    DrosophilaDevelopmentalStage,
+    DrosophilaDevelopmentalStageLookup,
     DrosophilaDevelopmentalStageModel,
     Registry,
 )
@@ -59,7 +59,7 @@ class DrosophilaDevelopmentalStageMetaTests(unittest.TestCase):
     def test_getattribute_existing_attribute(self, mock_get_fbdv_id):
         """Test __getattribute__ for existing attribute"""
         mock_get_fbdv_id.return_value = "00005369"
-        result = DrosophilaDevelopmentalStage.ADULT_STAGE
+        result = DrosophilaDevelopmentalStageLookup.ADULT_STAGE
         expected = DrosophilaDevelopmentalStageModel(
             name="adult stage",
             registry=Registry.FBDV,
@@ -74,16 +74,16 @@ class DrosophilaDevelopmentalStageMetaTests(unittest.TestCase):
         """Test __getattribute__ for nonexistent attribute"""
         mock_get_fbdv_id.return_value = None
         with self.assertRaises(AttributeError):
-            DrosophilaDevelopmentalStage.NONEXISTENT_ATTRIBUTE
+            DrosophilaDevelopmentalStageLookup.NONEXISTENT_ATTRIBUTE
 
         # this is a real attribute, but we're faking that it doesn't exist in the registry
         with self.assertRaises(ValueError):
-            DrosophilaDevelopmentalStage.ADULT_STAGE
+            DrosophilaDevelopmentalStageLookup.ADULT_STAGE
 
     def test_getattribute_magic_method(self):
         """Test __getattribute__ for magic method"""
-        result = DrosophilaDevelopmentalStage.__name__
-        expected = "DrosophilaDevelopmentalStage"
+        result = DrosophilaDevelopmentalStageLookup.__name__
+        expected = "DrosophilaDevelopmentalStageLookup"
         self.assertEqual(result, expected)
 
 

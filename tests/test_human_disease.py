@@ -3,7 +3,7 @@
 import unittest
 from unittest.mock import Mock, patch
 
-from biodata_models.human_disease import HumanDisease, HumanDiseaseModel
+from biodata_models.human_disease import HumanDiseaseLookup, HumanDiseaseModel
 from biodata_models.registries import Registry
 
 
@@ -29,7 +29,7 @@ class HumanDiseaseTests(unittest.TestCase):
         }
         mock_get.return_value = mock_response
 
-        result = HumanDisease.search_by_name(" Alzheimer ", limit=2)
+        result = HumanDiseaseLookup.search_by_name(" Alzheimer ", limit=2)
 
         self.assertEqual(
             result,
@@ -68,7 +68,7 @@ class HumanDiseaseTests(unittest.TestCase):
         }
         mock_get.return_value = mock_response
 
-        result = HumanDisease.search_by_name("ALZHEIMER DISEASE", exact_match=True)
+        result = HumanDiseaseLookup.search_by_name("ALZHEIMER DISEASE", exact_match=True)
 
         self.assertEqual([term.registry_identifier for term in result], ["DOID:1"])
 
@@ -86,7 +86,7 @@ class HumanDiseaseTests(unittest.TestCase):
         }
         mock_get.return_value = mock_response
 
-        result = HumanDisease.get_by_name("Alzheimer disease")
+        result = HumanDiseaseLookup.get_by_name("Alzheimer disease")
 
         self.assertEqual(
             result,
@@ -100,7 +100,7 @@ class HumanDiseaseTests(unittest.TestCase):
         mock_response.json.return_value = {"response": {"docs": []}}
         mock_get.return_value = mock_response
 
-        self.assertIsNone(HumanDisease.get_by_name("not a disease"))
+        self.assertIsNone(HumanDiseaseLookup.get_by_name("not a disease"))
 
     @patch("biodata_models.human_disease.requests.get")
     def test_get_by_name_rejects_ambiguous_labels(self, mock_get):
@@ -117,15 +117,15 @@ class HumanDiseaseTests(unittest.TestCase):
         mock_get.return_value = mock_response
 
         with self.assertRaises(ValueError):
-            HumanDisease.get_by_name("Shared disease label")
+            HumanDiseaseLookup.get_by_name("Shared disease label")
 
     @patch("biodata_models.human_disease.requests.get")
     def test_search_by_name_rejects_empty_name_and_invalid_limit(self, mock_get):
         """Invalid search inputs fail before making a request."""
         with self.assertRaises(ValueError):
-            HumanDisease.search_by_name(" ")
+            HumanDiseaseLookup.search_by_name(" ")
         with self.assertRaises(ValueError):
-            HumanDisease.search_by_name("cancer", limit=101)
+            HumanDiseaseLookup.search_by_name("cancer", limit=101)
 
         mock_get.assert_not_called()
 

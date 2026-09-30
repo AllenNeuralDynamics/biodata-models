@@ -77,7 +77,7 @@ def get_wbls_id(class_name):
 
 
 class CElegansDevelopmentalStageMeta(type):
-    """Meta class for CElegansDevelopmentalStage groups
+    """Meta class for CElegansDevelopmentalStageLookup groups
     """
     def __getattribute__(cls, name):
         """Custom get attribute function, validates developmental stage names against external WBLS registry
@@ -117,7 +117,7 @@ class CElegansDevelopmentalStageMeta(type):
         return super().__getattribute__(name)
 
 
-class CElegansDevelopmentalStage(metaclass=CElegansDevelopmentalStageMeta):
+class CElegansDevelopmentalStageLookup(metaclass=CElegansDevelopmentalStageMeta):
     """C. elegans developmental stage"""
 {% for _, row in data.iterrows() %}
     {{ row['name'] | to_class_name | upper }} = "{{ row['name'] }}"

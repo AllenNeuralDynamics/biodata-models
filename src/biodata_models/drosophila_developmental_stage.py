@@ -77,7 +77,7 @@ def get_fbdv_id(class_name):
 
 
 class DrosophilaDevelopmentalStageMeta(type):
-    """Meta class for DrosophilaDevelopmentalStage groups"""
+    """Meta class for DrosophilaDevelopmentalStageLookup groups"""
 
     def __getattribute__(cls, name):
         """Custom get attribute function, validates developmental stage names against external FBDV registry
@@ -117,7 +117,7 @@ class DrosophilaDevelopmentalStageMeta(type):
         return super().__getattribute__(name)
 
 
-class DrosophilaDevelopmentalStage(metaclass=DrosophilaDevelopmentalStageMeta):
+class DrosophilaDevelopmentalStageLookup(metaclass=DrosophilaDevelopmentalStageMeta):
     """Drosophila developmental stage"""
 
     DROSOPHILA_LIFE = "Drosophila life"

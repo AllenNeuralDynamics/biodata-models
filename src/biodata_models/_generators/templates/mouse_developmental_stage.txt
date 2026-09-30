@@ -77,7 +77,7 @@ def get_mmusdv_id(class_name):
 
 
 class MouseDevelopmentalStageMeta(type):
-    """Meta class for MouseDevelopmentalStage groups
+    """Meta class for MouseDevelopmentalStageLookup groups
     """
     def __getattribute__(cls, name):
         """Custom get attribute function, validates developmental stage names against external MMUSDV registry
@@ -117,7 +117,7 @@ class MouseDevelopmentalStageMeta(type):
         return super().__getattribute__(name)
 
 
-class MouseDevelopmentalStage(metaclass=MouseDevelopmentalStageMeta):
+class MouseDevelopmentalStageLookup(metaclass=MouseDevelopmentalStageMeta):
     """Mouse developmental stage"""
 {% for _, row in data.iterrows() %}
     {{ row['name'] | to_class_name | upper }} = "{{ row['name'] }}"

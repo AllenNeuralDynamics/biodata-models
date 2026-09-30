@@ -36,7 +36,7 @@ class AnatomyModel(BaseModel):
         When ``exact_match`` is true, only case-insensitive label matches are returned.
         """
         if not cls._ontology or not cls._identifier_prefix:
-            raise NotImplementedError("Use MouseAnatomy or HumanAnatomy for ontology lookups")
+            raise NotImplementedError("Use MouseAnatomyLookup or HumanAnatomyLookup for ontology lookups")
 
         normalized_name = name.strip()
         if not normalized_name:
@@ -89,7 +89,7 @@ class AnatomyModel(BaseModel):
         return matches[0] if matches else None
 
 
-class MouseAnatomy(AnatomyModel):
+class MouseAnatomyLookup(AnatomyModel):
     """Search mouse anatomy terms from the EMAPA ontology."""
 
     registry: Registry = Registry.EMAPA
@@ -97,7 +97,7 @@ class MouseAnatomy(AnatomyModel):
     _identifier_prefix: ClassVar[str] = "EMAPA:"
 
 
-class HumanAnatomy(AnatomyModel):
+class HumanAnatomyLookup(AnatomyModel):
     """Search human anatomy terms from the Foundational Model of Anatomy."""
 
     registry: Registry = Registry.FMA

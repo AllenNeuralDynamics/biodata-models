@@ -77,7 +77,7 @@ def get_wbls_id(class_name):
 
 
 class CElegansDevelopmentalStageMeta(type):
-    """Meta class for CElegansDevelopmentalStage groups"""
+    """Meta class for CElegansDevelopmentalStageLookup groups"""
 
     def __getattribute__(cls, name):
         """Custom get attribute function, validates developmental stage names against external WBLS registry
@@ -117,7 +117,7 @@ class CElegansDevelopmentalStageMeta(type):
         return super().__getattribute__(name)
 
 
-class CElegansDevelopmentalStage(metaclass=CElegansDevelopmentalStageMeta):
+class CElegansDevelopmentalStageLookup(metaclass=CElegansDevelopmentalStageMeta):
     """C. elegans developmental stage"""
 
     _1_MIN_POST_FIRST_CLEAVAGE_CE = "1 min post first-cleavage Ce"

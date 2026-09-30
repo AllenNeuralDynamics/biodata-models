@@ -3,7 +3,7 @@
 import unittest
 from unittest.mock import patch
 
-from biodata_models.cell_line import CellLine, CellLineModel
+from biodata_models.cell_line import CellLineLookup, CellLineModel
 from biodata_models.registries import Registry
 
 
@@ -36,7 +36,7 @@ class CellLineTests(unittest.TestCase):
             }
         }
 
-        result = CellLine.search_by_name(" HeLa ")
+        result = CellLineLookup.search_by_name(" HeLa ")
 
         self.assertEqual(
             result,
@@ -73,7 +73,7 @@ class CellLineTests(unittest.TestCase):
             }
         }
 
-        result = CellLine.search_by_name("hela", exact_match=True)
+        result = CellLineLookup.search_by_name("hela", exact_match=True)
 
         self.assertEqual([term.name for term in result], ["HeLa"])
         self.assertEqual(result[0].registry_identifier, "CLO:0000002")
@@ -90,7 +90,7 @@ class CellLineTests(unittest.TestCase):
             }
         }
 
-        result = CellLine.search_by_name("Example cell line")
+        result = CellLineLookup.search_by_name("Example cell line")
 
         self.assertEqual(result[0].registry_identifier, "CLO:0000123")
 
@@ -106,26 +106,26 @@ class CellLineTests(unittest.TestCase):
             }
         }
 
-        result = CellLine.search_by_name("HeLa", limit=1)
+        result = CellLineLookup.search_by_name("HeLa", limit=1)
 
         self.assertEqual([term.registry_identifier for term in result], ["CLO:0000001"])
 
-    @patch("biodata_models.cell_line.CellLine.search_by_name")
+    @patch("biodata_models.cell_line.CellLineLookup.search_by_name")
     def test_get_by_name_returns_exact_term(self, mock_search):
         """Test retrieving the unique exact-label term."""
         expected = CellLineModel(name="HeLa", registry_identifier="CLO:0000001")
         mock_search.return_value = [expected]
 
-        self.assertEqual(CellLine.get_by_name("HeLa"), expected)
+        self.assertEqual(CellLineLookup.get_by_name("HeLa"), expected)
         mock_search.assert_called_once_with("HeLa", exact_match=True, limit=2)
 
-    @patch("biodata_models.cell_line.CellLine.search_by_name", return_value=[])
+    @patch("biodata_models.cell_line.CellLineLookup.search_by_name", return_value=[])
     def test_get_by_name_returns_none_when_missing(self, _mock_search):
         """Test missing exact-label terms return None."""
-        self.assertIsNone(CellLine.get_by_name("Missing cell line"))
+        self.assertIsNone(CellLineLookup.get_by_name("Missing cell line"))
 
     @patch(
-        "biodata_models.cell_line.CellLine.search_by_name",
+        "biodata_models.cell_line.CellLineLookup.search_by_name",
         return_value=[
             CellLineModel(name="Duplicate", registry_identifier="CLO:0000001"),
             CellLineModel(name="Duplicate", registry_identifier="CLO:0000002"),
@@ -134,15 +134,15 @@ class CellLineTests(unittest.TestCase):
     def test_get_by_name_rejects_ambiguous_labels(self, _mock_search):
         """Test ambiguous exact-label terms raise ValueError."""
         with self.assertRaisesRegex(ValueError, "Multiple Cell Line Ontology terms"):
-            CellLine.get_by_name("Duplicate")
+            CellLineLookup.get_by_name("Duplicate")
 
     @patch("biodata_models.cell_line.requests.get")
     def test_search_by_name_rejects_invalid_input(self, mock_get):
         """Test empty names and invalid limits are rejected before querying."""
         with self.assertRaisesRegex(ValueError, "name must not be empty"):
-            CellLine.search_by_name("  ")
+            CellLineLookup.search_by_name("  ")
         with self.assertRaisesRegex(ValueError, "limit must be between 1 and 100"):
-            CellLine.search_by_name("HeLa", limit=101)
+            CellLineLookup.search_by_name("HeLa", limit=101)
         mock_get.assert_not_called()
 
 

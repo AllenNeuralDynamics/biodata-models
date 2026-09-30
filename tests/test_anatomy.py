@@ -3,7 +3,7 @@
 import unittest
 from unittest.mock import patch
 
-from biodata_models.anatomy import AnatomyModel, HumanAnatomy, MouseAnatomy
+from biodata_models.anatomy import AnatomyModel, HumanAnatomyLookup, MouseAnatomyLookup
 from biodata_models.registries import Registry
 
 
@@ -12,19 +12,19 @@ class AnatomyTests(unittest.TestCase):
 
     def test_ontology_models_share_anatomy_base(self):
         """Mouse and human anatomy terms share a common model base."""
-        self.assertTrue(issubclass(MouseAnatomy, AnatomyModel))
-        self.assertTrue(issubclass(HumanAnatomy, AnatomyModel))
+        self.assertTrue(issubclass(MouseAnatomyLookup, AnatomyModel))
+        self.assertTrue(issubclass(HumanAnatomyLookup, AnatomyModel))
 
     def test_base_model_search_requires_ontology_configuration(self):
         """The shared base cannot search without an ontology configuration."""
-        with self.assertRaisesRegex(NotImplementedError, "Use MouseAnatomy or HumanAnatomy"):
+        with self.assertRaisesRegex(NotImplementedError, "Use MouseAnatomyLookup or HumanAnatomyLookup"):
             AnatomyModel.search_by_name("heart")
 
     def test_anatomy_term_round_trips_json(self):
         """Ontology-specific anatomy models retain Pydantic serialization behavior."""
-        model = MouseAnatomy(name="heart", registry_identifier="EMAPA:16105")
+        model = MouseAnatomyLookup(name="heart", registry_identifier="EMAPA:16105")
 
-        round_trip = MouseAnatomy.model_validate_json(model.model_dump_json())
+        round_trip = MouseAnatomyLookup.model_validate_json(model.model_dump_json())
 
         self.assertEqual(model, round_trip)
 
@@ -41,11 +41,11 @@ class AnatomyTests(unittest.TestCase):
             }
         }
 
-        result = MouseAnatomy.search_by_name(" heart ")
+        result = MouseAnatomyLookup.search_by_name(" heart ")
 
         self.assertEqual(
             result,
-            [MouseAnatomy(name="heart", registry_identifier="EMAPA:16105")],
+            [MouseAnatomyLookup(name="heart", registry_identifier="EMAPA:16105")],
         )
         self.assertIsInstance(result[0], AnatomyModel)
         self.assertEqual(result[0].registry, Registry.EMAPA)
@@ -73,9 +73,9 @@ class AnatomyTests(unittest.TestCase):
             }
         }
 
-        result = HumanAnatomy.search_by_name(" HEART ", exact_match=True)
+        result = HumanAnatomyLookup.search_by_name(" HEART ", exact_match=True)
 
-        self.assertEqual(result, [HumanAnatomy(name="Heart", registry_identifier="fma7088")])
+        self.assertEqual(result, [HumanAnatomyLookup(name="Heart", registry_identifier="fma7088")])
         self.assertEqual(result[0].registry, Registry.FMA)
         mock_get.assert_called_once_with(
             "https://www.ebi.ac.uk/ols4/api/search",
@@ -95,12 +95,12 @@ class AnatomyTests(unittest.TestCase):
         mock_get.return_value.json.return_value = {"response": {"docs": [{"obo_id": "EMAPA:16105", "label": "heart"}]}}
 
         self.assertEqual(
-            MouseAnatomy.get_by_name("heart"),
-            MouseAnatomy(name="heart", registry_identifier="EMAPA:16105"),
+            MouseAnatomyLookup.get_by_name("heart"),
+            MouseAnatomyLookup(name="heart", registry_identifier="EMAPA:16105"),
         )
 
         mock_get.return_value.json.return_value = {"response": {"docs": []}}
-        self.assertIsNone(HumanAnatomy.get_by_name("not an anatomy term"))
+        self.assertIsNone(HumanAnatomyLookup.get_by_name("not an anatomy term"))
 
     @patch("biodata_models.anatomy.requests.get")
     def test_get_by_name_rejects_ambiguous_labels(self, mock_get):
@@ -115,15 +115,15 @@ class AnatomyTests(unittest.TestCase):
         }
 
         with self.assertRaises(ValueError):
-            HumanAnatomy.get_by_name("Shared anatomy label")
+            HumanAnatomyLookup.get_by_name("Shared anatomy label")
 
     @patch("biodata_models.anatomy.requests.get")
     def test_search_rejects_invalid_inputs_without_request(self, mock_get):
         """Search input validation happens before making the HTTP request."""
         with self.assertRaises(ValueError):
-            MouseAnatomy.search_by_name("  ")
+            MouseAnatomyLookup.search_by_name("  ")
         with self.assertRaises(ValueError):
-            HumanAnatomy.search_by_name("heart", limit=101)
+            HumanAnatomyLookup.search_by_name("heart", limit=101)
 
         mock_get.assert_not_called()
 

@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import patch
 from biodata_models.celegans_developmental_stage import search_wbls_exact_match, get_wbls_id
 from biodata_models.celegans_developmental_stage import (
-    CElegansDevelopmentalStage,
+    CElegansDevelopmentalStageLookup,
     CElegansDevelopmentalStageModel,
     Registry,
 )
@@ -59,7 +59,7 @@ class CElegansDevelopmentalStageMetaTests(unittest.TestCase):
     def test_getattribute_existing_attribute(self, mock_get_wbls_id):
         """Test __getattribute__ for existing attribute"""
         mock_get_wbls_id.return_value = "0000825"
-        result = CElegansDevelopmentalStage.C__ELEGANS_LIFE_STAGE
+        result = CElegansDevelopmentalStageLookup.C__ELEGANS_LIFE_STAGE
         expected = CElegansDevelopmentalStageModel(
             name="C. elegans life stage",
             registry=Registry.WBLS,
@@ -74,16 +74,16 @@ class CElegansDevelopmentalStageMetaTests(unittest.TestCase):
         """Test __getattribute__ for nonexistent attribute"""
         mock_get_wbls_id.return_value = None
         with self.assertRaises(AttributeError):
-            CElegansDevelopmentalStage.NONEXISTENT_ATTRIBUTE
+            CElegansDevelopmentalStageLookup.NONEXISTENT_ATTRIBUTE
 
         # this is a real attribute, but we're faking that it doesn't exist in the registry
         with self.assertRaises(ValueError):
-            CElegansDevelopmentalStage.C__ELEGANS_LIFE_STAGE
+            CElegansDevelopmentalStageLookup.C__ELEGANS_LIFE_STAGE
 
     def test_getattribute_magic_method(self):
         """Test __getattribute__ for magic method"""
-        result = CElegansDevelopmentalStage.__name__
-        expected = "CElegansDevelopmentalStage"
+        result = CElegansDevelopmentalStageLookup.__name__
+        expected = "CElegansDevelopmentalStageLookup"
         self.assertEqual(result, expected)
 
 

@@ -1,25 +1,25 @@
-"""Integration test for MouseAnatomy model EMAPA lookup."""
+"""Integration test for MouseAnatomyLookup model EMAPA lookup."""
 
 import sys
-from biodata_models.anatomy import MouseAnatomy
+from biodata_models.anatomy import MouseAnatomyLookup
 
 
 def main():
-    """Main function to test MouseAnatomy integration"""
+    """Main function to test MouseAnatomyLookup integration"""
     try:
-        heart = MouseAnatomy.get_by_name("heart")
+        heart = MouseAnatomyLookup.get_by_name("heart")
         if heart is None:
             raise ValueError("Could not find the mouse anatomy term 'heart'")
         print(
-            f"MouseAnatomy.get_by_name('heart'): name={heart.name}, registry={heart.registry}"
+            f"MouseAnatomyLookup.get_by_name('heart'): name={heart.name}, registry={heart.registry}"
             f", registry_identifier={heart.registry_identifier}"
         )
         assert heart.name.lower() == "heart"
         assert heart.registry.name == "EMAPA"
         assert heart.registry_identifier is not None and heart.registry_identifier != ""
-        print("MouseAnatomy integration test passed.")
+        print("MouseAnatomyLookup integration test passed.")
     except Exception as e:
-        print(f"MouseAnatomy integration test failed: {e}", file=sys.stderr)
+        print(f"MouseAnatomyLookup integration test failed: {e}", file=sys.stderr)
         sys.exit(1)
 
 

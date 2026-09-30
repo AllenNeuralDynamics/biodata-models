@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import patch
 from biodata_models.human_developmental_stage import search_hsapdv_exact_match, get_hsapdv_id
 from biodata_models.human_developmental_stage import (
-    HumanDevelopmentalStage,
+    HumanDevelopmentalStageLookup,
     HumanDevelopmentalStageModel,
     Registry,
 )
@@ -59,7 +59,7 @@ class HumanDevelopmentalStageMetaTests(unittest.TestCase):
     def test_getattribute_existing_attribute(self, mock_get_hsapdv_id):
         """Test __getattribute__ for existing attribute"""
         mock_get_hsapdv_id.return_value = "0000258"
-        result = HumanDevelopmentalStage.ADULT_STAGE
+        result = HumanDevelopmentalStageLookup.ADULT_STAGE
         expected = HumanDevelopmentalStageModel(
             name="adult stage",
             registry=Registry.HSAPDV,
@@ -74,16 +74,16 @@ class HumanDevelopmentalStageMetaTests(unittest.TestCase):
         """Test __getattribute__ for nonexistent attribute"""
         mock_get_hsapdv_id.return_value = None
         with self.assertRaises(AttributeError):
-            HumanDevelopmentalStage.NONEXISTENT_ATTRIBUTE
+            HumanDevelopmentalStageLookup.NONEXISTENT_ATTRIBUTE
 
         # this is a real attribute, but we're faking that it doesn't exist in the registry
         with self.assertRaises(ValueError):
-            HumanDevelopmentalStage.ADULT_STAGE
+            HumanDevelopmentalStageLookup.ADULT_STAGE
 
     def test_getattribute_magic_method(self):
         """Test __getattribute__ for magic method"""
-        result = HumanDevelopmentalStage.__name__
-        expected = "HumanDevelopmentalStage"
+        result = HumanDevelopmentalStageLookup.__name__
+        expected = "HumanDevelopmentalStageLookup"
         self.assertEqual(result, expected)
 
 
