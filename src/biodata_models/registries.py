@@ -22,4 +22,5 @@ class Registry(str, Enum):
     ORCID = "Open Researcher and Contributor ID (ORCID)"
     ROR = "Research Organization Registry (ROR)"
     RRID = "Research Resource Identifiers (RRID)"
+    FPbase = "The Fluorescent Protein Database (FPbase)"
     UNIPROT = "Universal Protein Resource (UNIPROT)"
