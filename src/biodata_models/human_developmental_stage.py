@@ -77,7 +77,7 @@ def get_hsapdv_id(class_name):
 
 
 class HumanDevelopmentalStageMeta(type):
-    """Meta class for HumanDevelopmentalStage groups"""
+    """Meta class for HumanDevelopmentalStageLookup groups"""
 
     def __getattribute__(cls, name):
         """Custom get attribute function, validates developmental stage names against external HSAPDV registry
@@ -117,7 +117,7 @@ class HumanDevelopmentalStageMeta(type):
         return super().__getattribute__(name)
 
 
-class HumanDevelopmentalStage(metaclass=HumanDevelopmentalStageMeta):
+class HumanDevelopmentalStageLookup(metaclass=HumanDevelopmentalStageMeta):
     """Human developmental stage"""
 
     _1_MONTH_OLD_STAGE = "1-month-old stage"

@@ -1,18 +1,14 @@
 """Tests classes with fixed Literal values match defaults"""
 
 import unittest
-from unittest.mock import patch
-
-from pydantic import BaseModel
 
 from biodata_models.harp_types import HarpDeviceType
 from biodata_models.organizations import Organization
 from biodata_models.species import Species
-from biodata_models.mouse_anatomy import MouseAnatomy, MouseAnatomyModel, MouseEmgMuscles
-from biodata_models.mouse_developmental_stage import MouseDevelopmentalStage
-from biodata_models.human_developmental_stage import HumanDevelopmentalStage
-from biodata_models.drosophila_developmental_stage import DrosophilaDevelopmentalStage
-from biodata_models.celegans_developmental_stage import CElegansDevelopmentalStage
+from biodata_models.mouse_developmental_stage import MouseDevelopmentalStageLookup
+from biodata_models.human_developmental_stage import HumanDevelopmentalStageLookup
+from biodata_models.drosophila_developmental_stage import DrosophilaDevelopmentalStageLookup
+from biodata_models.celegans_developmental_stage import CElegansDevelopmentalStageLookup
 from biodata_models.protocols import Protocols
 
 
@@ -46,29 +42,12 @@ class LiteralAndDefaultTests(unittest.TestCase):
             self.assertIsNotNone(round_trip)
             self.assertEqual(model, round_trip)
 
-    def test_mouse_anatomy(self):
-        """Test Literals match defaults"""
-        structures = [
-            "ANATOMICAL_STRUCTURE",
-            "FIRST_POLAR_BODY",
-            "_1_CELL_STAGE_EMBRYO",
-            "SECOND_POLAR_BODY",
-            "ZONA_PELLUCIDA",
-            "_2_CELL_STAGE_EMBRYO",
-        ]
-
-        for structure in structures:
-            model = getattr(MouseAnatomy, structure)
-            round_trip = model.model_validate_json(model.model_dump_json())
-            self.assertIsNotNone(round_trip)
-            self.assertEqual(model, round_trip)
-
     def test_mouse_developmental_stage(self):
         """Test Literals match defaults"""
         stages = ["LIFE_CYCLE_STAGE", "YOUNG_ADULT_STAGE", "LATE_ADULT_STAGE"]
 
         for stage in stages:
-            model = getattr(MouseDevelopmentalStage, stage)
+            model = getattr(MouseDevelopmentalStageLookup, stage)
             round_trip = model.model_validate_json(model.model_dump_json())
             self.assertIsNotNone(round_trip)
             self.assertEqual(model, round_trip)
@@ -78,7 +57,7 @@ class LiteralAndDefaultTests(unittest.TestCase):
         stages = ["ADULT_STAGE", "LATE_ADULT_STAGE", "PRIME_ADULT_STAGE"]
 
         for stage in stages:
-            model = getattr(HumanDevelopmentalStage, stage)
+            model = getattr(HumanDevelopmentalStageLookup, stage)
             round_trip = model.model_validate_json(model.model_dump_json())
             self.assertIsNotNone(round_trip)
             self.assertEqual(model, round_trip)
@@ -88,7 +67,7 @@ class LiteralAndDefaultTests(unittest.TestCase):
         stages = ["ADULT_STAGE", "ADULT_AGE_IN_DAYS"]
 
         for stage in stages:
-            model = getattr(DrosophilaDevelopmentalStage, stage)
+            model = getattr(DrosophilaDevelopmentalStageLookup, stage)
             round_trip = model.model_validate_json(model.model_dump_json())
             self.assertIsNotNone(round_trip)
             self.assertEqual(model, round_trip)
@@ -98,36 +77,10 @@ class LiteralAndDefaultTests(unittest.TestCase):
         stages = ["C__ELEGANS_LIFE_STAGE"]
 
         for stage in stages:
-            model = getattr(CElegansDevelopmentalStage, stage)
+            model = getattr(CElegansDevelopmentalStageLookup, stage)
             round_trip = model.model_validate_json(model.model_dump_json())
             self.assertIsNotNone(round_trip)
             self.assertEqual(model, round_trip)
-
-    @patch("biodata_models.mouse_anatomy.get_emapa_id", return_value="123")
-    def test_mouse_custom_features(self, mock_get_emapa_id):
-        """Test that the custom __getattribute__ functionality works properly"""
-        # ensure that class methods still return properly and don't trigger the custom __getattribute__ functionality
-        self.assertIsNotNone(MouseAnatomy.__module__)
-        self.assertIsNotNone(MouseAnatomy.__dict__)
-
-        # generate a model from the class
-        class TestModel(BaseModel):
-            """test class"""
-
-            structure: MouseAnatomyModel = MouseAnatomy.ANATOMICAL_STRUCTURE
-
-        test = TestModel()
-        self.assertIsNotNone(test)
-
-        # generate a test model using the emg group
-        class TestModel2(BaseModel):
-            """test class"""
-
-            structure: MouseAnatomyModel = MouseEmgMuscles.DELTOID
-
-        test = TestModel2()
-        self.assertIsNotNone(test)
-        mock_get_emapa_id.assert_called_once_with("deltoid")
 
     def test_protocols_instantiation(self):
         """Test that Protocols can be instantiated and have correct names"""

@@ -13,6 +13,12 @@ class TestRegistry(unittest.TestCase):
 
         self.assertEqual(Registry.ADDGENE, "Addgene (ADDGENE)")
 
+    def test_ols_ontology_registry_values(self):
+        """Tests registries required by OLS ontology lookups are available."""
+        self.assertEqual(Registry.DOID, "Human Disease Ontology (DOID)")
+        self.assertEqual(Registry.CLO, "Cell Line Ontology (CLO)")
+        self.assertEqual(Registry.FMA, "Foundational Model of Anatomy (FMA)")
+
 
 if __name__ == "__main__":
     unittest.main()

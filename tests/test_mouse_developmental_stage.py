@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import patch
 from biodata_models.mouse_developmental_stage import search_mmusdv_exact_match, get_mmusdv_id
 from biodata_models.mouse_developmental_stage import (
-    MouseDevelopmentalStage,
+    MouseDevelopmentalStageLookup,
     MouseDevelopmentalStageModel,
     Registry,
 )
@@ -59,7 +59,7 @@ class MouseDevelopmentalStageMetaTests(unittest.TestCase):
     def test_getattribute_existing_attribute(self, mock_get_mmusdv_id):
         """Test __getattribute__ for existing attribute"""
         mock_get_mmusdv_id.return_value = "0000000"
-        result = MouseDevelopmentalStage.LIFE_CYCLE_STAGE
+        result = MouseDevelopmentalStageLookup.LIFE_CYCLE_STAGE
         expected = MouseDevelopmentalStageModel(
             name="life cycle stage",
             registry=Registry.MMUSDV,
@@ -74,16 +74,16 @@ class MouseDevelopmentalStageMetaTests(unittest.TestCase):
         """Test __getattribute__ for nonexistent attribute"""
         mock_get_mmusdv_id.return_value = None
         with self.assertRaises(AttributeError):
-            MouseDevelopmentalStage.NONEXISTENT_ATTRIBUTE
+            MouseDevelopmentalStageLookup.NONEXISTENT_ATTRIBUTE
 
         # this is a real attribute, but we're faking that it doesn't exist in the registry
         with self.assertRaises(ValueError):
-            MouseDevelopmentalStage.LIFE_CYCLE_STAGE
+            MouseDevelopmentalStageLookup.LIFE_CYCLE_STAGE
 
     def test_getattribute_magic_method(self):
         """Test __getattribute__ for magic method"""
-        result = MouseDevelopmentalStage.__name__
-        expected = "MouseDevelopmentalStage"
+        result = MouseDevelopmentalStageLookup.__name__
+        expected = "MouseDevelopmentalStageLookup"
         self.assertEqual(result, expected)
 
 

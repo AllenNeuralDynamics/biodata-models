@@ -1,10 +1,13 @@
 name,abbreviation
 Addgene,ADDGENE
 C. elegans Development Ontology,WBLS
+Cell Line Ontology,CLO
 Digital Object Identifier,DOI
 Drosophila Development,FBDV
 Edinburgh Mouse Atlas Project,EMAPA
+Foundational Model of Anatomy,FMA
 Human Developmental Stages,HSAPDV
+Human Disease Ontology,DOID
 Mouse Developmental Stages,MMUSDV
 Mouse Genome Informatics,MGI
 National Center for Biotechnology Information,NCBI

@@ -17,7 +17,7 @@ class HumanDiseaseModel(BaseModel):
     registry_identifier: str
 
 
-class HumanDisease:
+class HumanDiseaseLookup:
     """Search the Human Disease Ontology through OLS4."""
 
     @classmethod

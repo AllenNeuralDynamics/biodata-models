@@ -8,9 +8,6 @@ from pathlib import Path
 import subprocess
 
 
-SKIP_SORT = ["mouse_anatomy"]
-
-
 def check_black_version():
     """Check that the version of the black package is >= 25.0.0"""
     import black
@@ -28,7 +25,7 @@ def load_data(data_type: str, root_path: str) -> pd.DataFrame:
     data = pd.read_csv(data_file)
 
     # If there's a name field, sort A->Z
-    if "name" in data.columns and data_type not in SKIP_SORT:
+    if "name" in data.columns:
         data = data.sort_values("name")
 
     return data
