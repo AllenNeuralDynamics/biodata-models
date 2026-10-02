@@ -1,5 +1,6 @@
 """Mouse and human anatomy ontology models backed by OLS4."""
 
+from enum import Enum
 from typing import ClassVar, TypeVar
 
 import requests
@@ -95,6 +96,67 @@ class MouseAnatomyLookup(AnatomyModel):
     registry: Registry = Registry.EMAPA
     _ontology: ClassVar[str] = "emapa"
     _identifier_prefix: ClassVar[str] = "EMAPA:"
+
+
+class MouseEmgMuscles(str, Enum):
+    """Mouse anatomy targets used for EMG muscles."""
+
+    DELTOID = "deltoid"
+    PECTORALIS_MAJOR = "pectoralis major"
+    TRICEPS_BRACHII = "triceps brachii"
+    LATERAL_HEAD_OF_TRICEPS_BRACHII = "lateral head of triceps brachii"
+    LONG_HEAD_OF_TRICEPS_BRACHII = "long head of triceps brachii"
+    MEDIAL_HEAD_OF_TRICEPS_BRACHII = "medial head of triceps brachii"
+    BICEPS_BRACHII = "biceps brachii"
+    LONG_HEAD_OF_BICEPS_BRACHII = "long head of biceps brachii"
+    SHORT_HEAD_OF_BICEPS_BRACHII = "short head of biceps brachii"
+    TENDON_OF_BICEPS_BRACHII = "tendon of biceps brachii"
+    PARS_SCAPULARIS_OF_DELTOID = "pars scapularis of deltoid"
+    EXTENSOR_CARPI_RADIALIS_LONGUS = "extensor carpi radialis longus"
+    EXTENSOR_DIGITORUM_COMMUNIS = "extensor digitorum communis"
+    EXTENSOR_DIGITORUM_LATERALIS = "extensor digitorum lateralis"
+    EXTENSOR_CARPI_ULNARIS = "extensor carpi ulnaris"
+    FLEXOR_CARPI_RADIALIS = "flexor carpi radialis"
+    FLEXOR_CARPI_ULNARIS = "flexor carpi ulnaris"
+    FLEXOR_DIGITORUM_PROFUNDUS = "flexor digitorum profundus"
+
+
+class MouseBodyParts(str, Enum):
+    """Mouse anatomy targets used for body parts."""
+
+    FORELIMB = "forelimb"
+    HEAD = "head"
+    HINDLIMB = "hindlimb"
+    NECK = "neck"
+    TAIL = "tail"
+    TRUNK = "trunk"
+
+
+class MouseGroundWireLocations(str, Enum):
+    """Mouse anatomy targets used for ground-wire locations."""
+
+    FORELIMB = "forelimb"
+    HEAD = "head"
+    HINDLIMB = "hindlimb"
+    NECK = "neck"
+    TAIL = "tail"
+    TRUNK = "trunk"
+    BRAIN = "brain"
+    CRANIUM = "cranium"
+
+
+class MouseBloodVessels(str, Enum):
+    """Mouse anatomy targets used for blood vessels."""
+
+    CAROTID_ARTERY = "carotid artery"
+    JUGULAR_VEIN = "jugular vein"
+
+
+class MouseInjectionTargets(str, Enum):
+    """Mouse anatomy targets used for common injection targets."""
+
+    RETRO_ORBITAL = "venous sinus"
+    INTRAPERITONEAL = "peritoneal cavity"
 
 
 class HumanAnatomyLookup(AnatomyModel):
