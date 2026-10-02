@@ -3,7 +3,13 @@
 import unittest
 from unittest.mock import patch
 
-from biodata_models.anatomy import AnatomyModel, HumanAnatomyLookup, MouseAnatomyLookup
+from biodata_models.anatomy import (
+    AnatomyModel,
+    HumanAnatomyLookup,
+    MouseAnatomyLookup,
+    MouseBodyParts,
+    MouseInjectionTargets,
+)
 from biodata_models.registries import Registry
 
 
@@ -27,6 +33,12 @@ class AnatomyTests(unittest.TestCase):
         round_trip = MouseAnatomyLookup.model_validate_json(model.model_dump_json())
 
         self.assertEqual(model, round_trip)
+
+    def test_mouse_target_enums_preserve_legacy_shortcuts(self):
+        """Legacy mouse anatomy shortcuts remain separated by purpose."""
+        self.assertEqual(MouseBodyParts.HEAD.value, "head")
+        self.assertEqual(MouseInjectionTargets.RETRO_ORBITAL.value, "venous sinus")
+        self.assertIsInstance(MouseInjectionTargets.RETRO_ORBITAL, str)
 
     @patch("biodata_models.anatomy.requests.get")
     def test_mouse_search_by_name_uses_emapa(self, mock_get):
@@ -101,6 +113,21 @@ class AnatomyTests(unittest.TestCase):
 
         mock_get.return_value.json.return_value = {"response": {"docs": []}}
         self.assertIsNone(HumanAnatomyLookup.get_by_name("not an anatomy term"))
+
+    @patch("biodata_models.anatomy.requests.get")
+    def test_get_by_name_accepts_purpose_specific_mouse_target(self, mock_get):
+        """Purpose-specific mouse targets can be passed directly to the lookup API."""
+        mock_get.return_value.json.return_value = {
+            "response": {"docs": [{"obo_id": "EMAPA:18021", "label": "venous sinus"}]}
+        }
+
+        result = MouseAnatomyLookup.get_by_name(MouseInjectionTargets.RETRO_ORBITAL)
+
+        self.assertEqual(
+            result,
+            MouseAnatomyLookup(name="venous sinus", registry_identifier="EMAPA:18021"),
+        )
+        mock_get.assert_called_once()
 
     @patch("biodata_models.anatomy.requests.get")
     def test_get_by_name_rejects_ambiguous_labels(self, mock_get):
