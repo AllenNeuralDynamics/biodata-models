@@ -396,6 +396,15 @@ class _Fujinon(OrganizationModel):
     registry_identifier: Optional[str] = Field(default=None)
 
 
+class _G_Harold_Leila_Y_Mathers_Foundation(OrganizationModel):
+    """Model G. Harold & Leila Y. Mathers Foundation"""
+
+    name: Literal["G. Harold & Leila Y. Mathers Foundation"] = "G. Harold & Leila Y. Mathers Foundation"
+    abbreviation: Literal[None] = None
+    registry: Optional[Registry] = Field(default=Registry.ROR)
+    registry_identifier: Optional[str] = Field(default="02a7hjv13")
+
+
 class _Hamamatsu(OrganizationModel):
     """Model Hamamatsu"""
 
@@ -549,6 +558,15 @@ class _Kent_Scientific_Corporation(OrganizationModel):
     registry_identifier: Optional[str] = Field(default="03xkj6a08")
 
 
+class _Klingenstein_Third_Generation_Foundation(OrganizationModel):
+    """Model Klingenstein Third Generation Foundation"""
+
+    name: Literal["Klingenstein Third Generation Foundation"] = "Klingenstein Third Generation Foundation"
+    abbreviation: Literal["KTGF"] = "KTGF"
+    registry: Optional[Registry] = Field(default=Registry.ROR)
+    registry_identifier: Optional[str] = Field(default="00cxc2y95")
+
+
 class _Kowa(OrganizationModel):
     """Model Kowa"""
 
@@ -583,6 +601,15 @@ class _Leica(OrganizationModel):
     abbreviation: Literal[None] = None
     registry: Optional[Registry] = Field(default=None)
     registry_identifier: Optional[str] = Field(default=None)
+
+
+class _Life_Sciences_Research_Foundation(OrganizationModel):
+    """Model Life Sciences Research Foundation"""
+
+    name: Literal["Life Sciences Research Foundation"] = "Life Sciences Research Foundation"
+    abbreviation: Literal["LSRF"] = "LSRF"
+    registry: Optional[Registry] = Field(default=Registry.ROR)
+    registry_identifier: Optional[str] = Field(default="0195dxj21")
 
 
 class _Lifecanvas(OrganizationModel):
@@ -664,6 +691,24 @@ class _Mcgovern_Institute_For_Brain_Research(OrganizationModel):
     abbreviation: Literal["MIBR"] = "MIBR"
     registry: Optional[Registry] = Field(default=Registry.ROR)
     registry_identifier: Optional[str] = Field(default="05ymca674")
+
+
+class _Mcknight_Brain_Research_Foundation(OrganizationModel):
+    """Model McKnight Brain Research Foundation"""
+
+    name: Literal["McKnight Brain Research Foundation"] = "McKnight Brain Research Foundation"
+    abbreviation: Literal[None] = None
+    registry: Optional[Registry] = Field(default=Registry.ROR)
+    registry_identifier: Optional[str] = Field(default="00vsf1v04")
+
+
+class _Mcknight_Foundation(OrganizationModel):
+    """Model McKnight Foundation"""
+
+    name: Literal["McKnight Foundation"] = "McKnight Foundation"
+    abbreviation: Literal[None] = None
+    registry: Optional[Registry] = Field(default=Registry.ROR)
+    registry_identifier: Optional[str] = Field(default="003ghvj67")
 
 
 class _Meadowlark_Optics(OrganizationModel):
@@ -751,6 +796,15 @@ class _National_Institute_Of_Neurological_Disorders_And_Stroke(OrganizationModel
     abbreviation: Literal["NINDS"] = "NINDS"
     registry: Optional[Registry] = Field(default=Registry.ROR)
     registry_identifier: Optional[str] = Field(default="01s5ya894")
+
+
+class _National_Institute_On_Aging(OrganizationModel):
+    """Model National Institute on Aging"""
+
+    name: Literal["National Institute on Aging"] = "National Institute on Aging"
+    abbreviation: Literal["NIA"] = "NIA"
+    registry: Optional[Registry] = Field(default=Registry.ROR)
+    registry_identifier: Optional[str] = Field(default="049v75w11")
 
 
 class _National_Instruments(OrganizationModel):
@@ -868,6 +922,15 @@ class _Oxxius(OrganizationModel):
     abbreviation: Literal[None] = None
     registry: Optional[Registry] = Field(default=None)
     registry_identifier: Optional[str] = Field(default=None)
+
+
+class _Pew_Charitable_Trusts(OrganizationModel):
+    """Model Pew Charitable Trusts"""
+
+    name: Literal["Pew Charitable Trusts"] = "Pew Charitable Trusts"
+    abbreviation: Literal[None] = None
+    registry: Optional[Registry] = Field(default=Registry.ROR)
+    registry_identifier: Optional[str] = Field(default="02xhk2825")
 
 
 class _Placid_Industries(OrganizationModel):
@@ -1140,6 +1203,24 @@ class _U_S_National_Science_Foundation(OrganizationModel):
     registry_identifier: Optional[str] = Field(default="021nxhr62")
 
 
+class _United_States_Department_Of_Defense(OrganizationModel):
+    """Model United States Department of Defense"""
+
+    name: Literal["United States Department of Defense"] = "United States Department of Defense"
+    abbreviation: Literal["DOD"] = "DOD"
+    registry: Optional[Registry] = Field(default=Registry.ROR)
+    registry_identifier: Optional[str] = Field(default="0447fe631")
+
+
+class _United_States_Department_Of_Energy(OrganizationModel):
+    """Model United States Department of Energy"""
+
+    name: Literal["United States Department of Energy"] = "United States Department of Energy"
+    abbreviation: Literal["DOE"] = "DOE"
+    registry: Optional[Registry] = Field(default=Registry.ROR)
+    registry_identifier: Optional[str] = Field(default="01bj3aw27")
+
+
 class _University_Of_California_San_Diego(OrganizationModel):
     """Model University of California, San Diego"""
 
@@ -1183,6 +1264,15 @@ class _Vortran(OrganizationModel):
     abbreviation: Literal[None] = None
     registry: Optional[Registry] = Field(default=None)
     registry_identifier: Optional[str] = Field(default=None)
+
+
+class _W_M_Keck_Foundation(OrganizationModel):
+    """Model W. M. Keck Foundation"""
+
+    name: Literal["W. M. Keck Foundation"] = "W. M. Keck Foundation"
+    abbreviation: Literal[None] = None
+    registry: Optional[Registry] = Field(default=Registry.ROR)
+    registry_identifier: Optional[str] = Field(default="000dswa46")
 
 
 class _Warren_Alpert_Foundation(OrganizationModel):
@@ -1257,6 +1347,7 @@ class Organization:
     EURESYS = _Euresys()
     EXCELITAS_TECHNOLOGIES = _Excelitas_Technologies()
     FUJINON = _Fujinon()
+    G__HAROLD___LEILA_Y__MATHERS_FOUNDATION = _G_Harold_Leila_Y_Mathers_Foundation()
     HAMAMATSU = _Hamamatsu()
     HAMILTON = _Hamilton()
     HELEN_HAY_WHITNEY_FOUNDATION = _Helen_Hay_Whitney_Foundation()
@@ -1274,10 +1365,12 @@ class Organization:
     JHU = _Johns_Hopkins_University()
     JULABO = _Julabo()
     KENT_SCIENTIFIC_CORPORATION = _Kent_Scientific_Corporation()
+    KTGF = _Klingenstein_Third_Generation_Foundation()
     KOWA = _Kowa()
     LASOS = _Lasos_Lasertechnik()
     LG = _Lg()
     LEICA = _Leica()
+    LSRF = _Life_Sciences_Research_Foundation()
     LIFECANVAS = _Lifecanvas()
     LUMEN_DYNAMICS = _Lumen_Dynamics()
     LUMENCOR = _Lumencor()
@@ -1287,6 +1380,8 @@ class Organization:
     MPI = _Mpi()
     MIT = _Massachusetts_Institute_Of_Technology()
     MIBR = _Mcgovern_Institute_For_Brain_Research()
+    MCKNIGHT_BRAIN_RESEARCH_FOUNDATION = _Mcknight_Brain_Research_Foundation()
+    MCKNIGHT_FOUNDATION = _Mcknight_Foundation()
     MEADOWLARK_OPTICS = _Meadowlark_Optics()
     MJFF = _Michael_J_Fox_Foundation_For_Parkinson_S_Research()
     MIDOPT = _Midwest_Optical_Systems_Inc_()
@@ -1296,6 +1391,7 @@ class Organization:
     NCCIH = _National_Center_For_Complementary_And_Integrative_Health()
     NIMH = _National_Institute_Of_Mental_Health()
     NINDS = _National_Institute_Of_Neurological_Disorders_And_Stroke()
+    NIA = _National_Institute_On_Aging()
     NATIONAL_INSTRUMENTS = _National_Instruments()
     NAVITAR = _Navitar()
     NEURALYNX = _Neuralynx()
@@ -1309,6 +1405,7 @@ class Organization:
     OTHER = _Other()
     OXFORD_INSTRUMENTS = _Oxford_Instruments()
     OXXIUS = _Oxxius()
+    PEW_CHARITABLE_TRUSTS = _Pew_Charitable_Trusts()
     PLACID_INDUSTRIES = _Placid_Industries()
     PRIZMATIX = _Prizmatix()
     QUANTIFI = _Quantifi()
@@ -1339,11 +1436,14 @@ class Organization:
     TRANSDUCER_TECHNIQUES = _Transducer_Techniques()
     TYMPHANY = _Tymphany()
     NSF = _U_S_National_Science_Foundation()
+    DOD = _United_States_Department_Of_Defense()
+    DOE = _United_States_Department_Of_Energy()
     UCSD = _University_Of_California_San_Diego()
     UPENN = _University_Of_Pennsylvania()
     UNKNOWN = _Unknown()
     VIEWORKS = _Vieworks()
     VORTRAN = _Vortran()
+    W__M__KECK_FOUNDATION = _W_M_Keck_Foundation()
     WARREN_ALPERT_FOUNDATION = _Warren_Alpert_Foundation()
     WPI = _World_Precision_Intstruments()
     AMS_OSRAM = _Ams_Osram()
@@ -1394,6 +1494,7 @@ class Organization:
             _Euresys,
             _Excelitas_Technologies,
             _Fujinon,
+            _G_Harold_Leila_Y_Mathers_Foundation,
             _Hamamatsu,
             _Hamilton,
             _Helen_Hay_Whitney_Foundation,
@@ -1411,10 +1512,12 @@ class Organization:
             _Johns_Hopkins_University,
             _Julabo,
             _Kent_Scientific_Corporation,
+            _Klingenstein_Third_Generation_Foundation,
             _Kowa,
             _Lasos_Lasertechnik,
             _Lg,
             _Leica,
+            _Life_Sciences_Research_Foundation,
             _Lifecanvas,
             _Lumen_Dynamics,
             _Lumencor,
@@ -1424,6 +1527,8 @@ class Organization:
             _Mpi,
             _Massachusetts_Institute_Of_Technology,
             _Mcgovern_Institute_For_Brain_Research,
+            _Mcknight_Brain_Research_Foundation,
+            _Mcknight_Foundation,
             _Meadowlark_Optics,
             _Michael_J_Fox_Foundation_For_Parkinson_S_Research,
             _Midwest_Optical_Systems_Inc_,
@@ -1433,6 +1538,7 @@ class Organization:
             _National_Center_For_Complementary_And_Integrative_Health,
             _National_Institute_Of_Mental_Health,
             _National_Institute_Of_Neurological_Disorders_And_Stroke,
+            _National_Institute_On_Aging,
             _National_Instruments,
             _Navitar,
             _Neuralynx,
@@ -1446,6 +1552,7 @@ class Organization:
             _Other,
             _Oxford_Instruments,
             _Oxxius,
+            _Pew_Charitable_Trusts,
             _Placid_Industries,
             _Prizmatix,
             _Quantifi,
@@ -1476,11 +1583,14 @@ class Organization:
             _Transducer_Techniques,
             _Tymphany,
             _U_S_National_Science_Foundation,
+            _United_States_Department_Of_Defense,
+            _United_States_Department_Of_Energy,
             _University_Of_California_San_Diego,
             _University_Of_Pennsylvania,
             _Unknown,
             _Vieworks,
             _Vortran,
+            _W_M_Keck_Foundation,
             _Warren_Alpert_Foundation,
             _World_Precision_Intstruments,
             _Ams_Osram,
