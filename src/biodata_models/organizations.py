@@ -63,6 +63,15 @@ class _Ailipu_Technology_Co(OrganizationModel):
     registry_identifier: Optional[str] = Field(default=None)
 
 
+class _Aligning_Science_Across_Parkinson_S(OrganizationModel):
+    """Model Aligning Science Across Parkinson's"""
+
+    name: Literal["Aligning Science Across Parkinson's"] = "Aligning Science Across Parkinson's"
+    abbreviation: Literal["ASAP"] = "ASAP"
+    registry: Optional[Registry] = Field(default=Registry.ROR)
+    registry_identifier: Optional[str] = Field(default="03zj4c476")
+
+
 class _Allen_Institute(OrganizationModel):
     """Model Allen Institute"""
 
@@ -351,6 +360,15 @@ class _Emory_University(OrganizationModel):
     registry_identifier: Optional[str] = Field(default="03czfpz43")
 
 
+class _Esther_A_Joseph_Klingenstein_Fund(OrganizationModel):
+    """Model Esther A. & Joseph Klingenstein Fund"""
+
+    name: Literal["Esther A. & Joseph Klingenstein Fund"] = "Esther A. & Joseph Klingenstein Fund"
+    abbreviation: Literal[None] = None
+    registry: Optional[Registry] = Field(default=Registry.ROR)
+    registry_identifier: Optional[str] = Field(default="01q222b25")
+
+
 class _Euresys(OrganizationModel):
     """Model Euresys"""
 
@@ -394,6 +412,15 @@ class _Hamilton(OrganizationModel):
     abbreviation: Literal[None] = None
     registry: Optional[Registry] = Field(default=None)
     registry_identifier: Optional[str] = Field(default=None)
+
+
+class _Helen_Hay_Whitney_Foundation(OrganizationModel):
+    """Model Helen Hay Whitney Foundation"""
+
+    name: Literal["Helen Hay Whitney Foundation"] = "Helen Hay Whitney Foundation"
+    abbreviation: Literal[None] = None
+    registry: Optional[Registry] = Field(default=Registry.ROR)
+    registry_identifier: Optional[str] = Field(default="037ebw447")
 
 
 class _Huazhong_University_Of_Science_And_Technology(OrganizationModel):
@@ -1104,6 +1131,15 @@ class _Tymphany(OrganizationModel):
     registry_identifier: Optional[str] = Field(default=None)
 
 
+class _U_S_National_Science_Foundation(OrganizationModel):
+    """Model U.S. National Science Foundation"""
+
+    name: Literal["U.S. National Science Foundation"] = "U.S. National Science Foundation"
+    abbreviation: Literal["NSF"] = "NSF"
+    registry: Optional[Registry] = Field(default=Registry.ROR)
+    registry_identifier: Optional[str] = Field(default="021nxhr62")
+
+
 class _University_Of_California_San_Diego(OrganizationModel):
     """Model University of California, San Diego"""
 
@@ -1149,6 +1185,15 @@ class _Vortran(OrganizationModel):
     registry_identifier: Optional[str] = Field(default=None)
 
 
+class _Warren_Alpert_Foundation(OrganizationModel):
+    """Model Warren Alpert Foundation"""
+
+    name: Literal["Warren Alpert Foundation"] = "Warren Alpert Foundation"
+    abbreviation: Literal[None] = None
+    registry: Optional[Registry] = Field(default=Registry.ROR)
+    registry_identifier: Optional[str] = Field(default="041ztcd61")
+
+
 class _World_Precision_Intstruments(OrganizationModel):
     """Model World Precision Intstruments"""
 
@@ -1175,6 +1220,7 @@ class Organization:
     ABCAM = _Abcam()
     ADDGENE = _Addgene()
     AILIPU = _Ailipu_Technology_Co()
+    ASAP = _Aligning_Science_Across_Parkinson_S()
     AI = _Allen_Institute()
     AIBS = _Allen_Institute_For_Brain_Science()
     AIND = _Allen_Institute_For_Neural_Dynamics()
@@ -1207,11 +1253,13 @@ class Organization:
     EALING = _Ealing()
     EDMUND_OPTICS = _Edmund_Optics()
     EMORY = _Emory_University()
+    ESTHER_A____JOSEPH_KLINGENSTEIN_FUND = _Esther_A_Joseph_Klingenstein_Fund()
     EURESYS = _Euresys()
     EXCELITAS_TECHNOLOGIES = _Excelitas_Technologies()
     FUJINON = _Fujinon()
     HAMAMATSU = _Hamamatsu()
     HAMILTON = _Hamilton()
+    HELEN_HAY_WHITNEY_FOUNDATION = _Helen_Hay_Whitney_Foundation()
     HUST = _Huazhong_University_Of_Science_And_Technology()
     IR_ROBOT_CO = _Ir_Robot_Co()
     ISL = _Isl_Products_International()
@@ -1290,11 +1338,13 @@ class Organization:
     THORLABS = _Thorlabs()
     TRANSDUCER_TECHNIQUES = _Transducer_Techniques()
     TYMPHANY = _Tymphany()
+    NSF = _U_S_National_Science_Foundation()
     UCSD = _University_Of_California_San_Diego()
     UPENN = _University_Of_Pennsylvania()
     UNKNOWN = _Unknown()
     VIEWORKS = _Vieworks()
     VORTRAN = _Vortran()
+    WARREN_ALPERT_FOUNDATION = _Warren_Alpert_Foundation()
     WPI = _World_Precision_Intstruments()
     AMS_OSRAM = _Ams_Osram()
 
@@ -1307,6 +1357,7 @@ class Organization:
             _Abcam,
             _Addgene,
             _Ailipu_Technology_Co,
+            _Aligning_Science_Across_Parkinson_S,
             _Allen_Institute,
             _Allen_Institute_For_Brain_Science,
             _Allen_Institute_For_Neural_Dynamics,
@@ -1339,11 +1390,13 @@ class Organization:
             _Ealing,
             _Edmund_Optics,
             _Emory_University,
+            _Esther_A_Joseph_Klingenstein_Fund,
             _Euresys,
             _Excelitas_Technologies,
             _Fujinon,
             _Hamamatsu,
             _Hamilton,
+            _Helen_Hay_Whitney_Foundation,
             _Huazhong_University_Of_Science_And_Technology,
             _Ir_Robot_Co,
             _Isl_Products_International,
@@ -1422,11 +1475,13 @@ class Organization:
             _Thorlabs,
             _Transducer_Techniques,
             _Tymphany,
+            _U_S_National_Science_Foundation,
             _University_Of_California_San_Diego,
             _University_Of_Pennsylvania,
             _Unknown,
             _Vieworks,
             _Vortran,
+            _Warren_Alpert_Foundation,
             _World_Precision_Intstruments,
             _Ams_Osram,
         ],
