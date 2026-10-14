@@ -1,8 +1,8 @@
-"""Tests for data level and collection group vocabularies."""
+"""Tests for the data level vocabulary."""
 
 import unittest
 
-from biodata_models.data_name_patterns import DataLevel, Group
+from biodata_models.data_name_patterns import DataLevel
 
 
 class TestDataNameVocabularies(unittest.TestCase):
@@ -11,7 +11,3 @@ class TestDataNameVocabularies(unittest.TestCase):
     def test_data_levels(self):
         """Test the supported data levels."""
         self.assertEqual({"derived", "raw", "simulated"}, {level.value for level in DataLevel})
-
-    def test_groups(self):
-        """Test the supported data collection groups."""
-        self.assertEqual({"behavior", "ephys", "MSMA", "ophys", "NBA"}, {group.value for group in Group})
