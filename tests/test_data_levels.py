@@ -2,7 +2,7 @@
 
 import unittest
 
-from biodata_models.data_name_patterns import DataLevel
+from biodata_models.data_levels import DataLevel
 
 
 class TestDataNameVocabularies(unittest.TestCase):
