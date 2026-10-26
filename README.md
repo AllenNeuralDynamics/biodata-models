@@ -11,6 +11,8 @@
 
 `biodata-models` provides controlled vocabulary and registry models for `biodata-schema`. You shouldn't generally install this package in isolation.
 
+**Note on dependencies:** this package is updated frequently, because new vocabulary and registry entries are added as the schema evolves. If you take a dependency on `biodata-models`, expect frequent releases and be prepared to update your own package regularly to keep your pinned version up to date.
+
 ## Contributing
 
 Install the dev dependencies:
